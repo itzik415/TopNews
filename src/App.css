@@ -1,0 +1,249 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  max-width: 1200px;
+  margin: 0px auto; }
+
+.header__section {
+  display: flex;
+  font-size: 2rem;
+  align-items: center;
+  border-bottom: 5px solid red;
+  position: fixed;
+  background-color: white;
+  width: 1200px;
+  z-index: 1000; }
+  .header__section-logo {
+    padding: 10px 15px;
+    font-size: 3rem;
+    font-weight: bolder;
+    font-family: Georgia;
+    flex: 1; }
+  .header__section-list {
+    list-style: none;
+    display: flex; }
+  .header__section-list-object {
+    margin: 0 2.5rem;
+    font-weight: 100; }
+    .header__section-list-object:hover {
+      cursor: pointer;
+      color: red;
+      transition: 0.3s; }
+
+#nav-icon {
+  font-size: 3rem; }
+  #nav-icon:hover {
+    cursor: pointer;
+    color: red;
+    transition: 0.3s; }
+
+#search-icon {
+  font-size: 3rem; }
+  #search-icon:hover {
+    cursor: pointer;
+    color: red;
+    transition: 0.3s; }
+
+.slider__section {
+  background-color: black;
+  height: 450px;
+  display: flex;
+  justify-content: center; }
+  .slider__section-image {
+    margin-top: 80px;
+    width: 630px;
+    height: 390px; }
+  .slider__section-article {
+    margin: 80px 0 0 20px;
+    width: 480px; }
+    .slider__section-article-companyName {
+      font-size: 11px;
+      font-weight: bold;
+      color: grey;
+      margin-bottom: 10px; }
+    .slider__section-article-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      line-height: 1.1;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: white; }
+    .slider__section-article-description {
+      font-size: 15px;
+      color: white;
+      font-weight: 100;
+      line-height: 1.4; }
+
+#arrowLeft {
+  font-size: 60px;
+  margin: auto 15px auto 0;
+  opacity: 0;
+  color: white; }
+
+#arrowRight {
+  font-size: 60px;
+  margin: auto 0 auto 15px;
+  opacity: 0;
+  color: white; }
+
+.slider__section:hover > #arrowRight,
+.slider__section:hover > #arrowLeft {
+  opacity: 1;
+  transition: 0.5s; }
+
+#redName {
+  color: #d20000; }
+
+.gallery {
+  grid-column: full-start / full-end;
+  display: grid;
+  grid-template: repeat(9, 70px)/repeat(17, 1fr);
+  grid-gap: 1rem;
+  max-width: 1200px;
+  margin: 30px 0;
+  position: relative; }
+  .gallery-line {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 17;
+    content: '';
+    background: #555;
+    position: absolute;
+    top: 35px;
+    width: 100%;
+    height: 1px;
+    z-index: 0; }
+  .gallery-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 17;
+    padding: 5px;
+    font-size: 17px;
+    font-weight: bold;
+    transform: skewX(-15deg);
+    text-transform: uppercase;
+    z-index: 1; }
+    .gallery-title-text {
+      background-color: red;
+      color: white;
+      padding: 4px 10px; }
+  .gallery__item {
+    position: relative;
+    background-color: black; }
+    .gallery__item--0 {
+      grid-row: 2 / span 6;
+      grid-column: 1 / span 7; }
+      .gallery__item--0-container {
+        background-color: black;
+        grid-row: 7 / span 2;
+        grid-column: 1 / span 7;
+        width: 100%;
+        height: 160px; }
+        .gallery__item--0-container-title {
+          font-size: 25px;
+          padding: 20px 15px 15px 15px;
+          color: white; }
+        .gallery__item--0-container-date {
+          font-size: 13px;
+          padding: 0px 15px 40px 15px;
+          color: white; }
+    .gallery__item--1 {
+      grid-row: 2 / span 3;
+      grid-column: 8 / span 5; }
+      .gallery__item--1-container {
+        background-color: black;
+        height: 80px; }
+        .gallery__item--1-container-title {
+          font-size: 15px;
+          padding: 10px 10px 0 10px;
+          color: white; }
+        .gallery__item--1-container-date {
+          font-size: 13px;
+          padding: 0 10px;
+          margin: 5px 0;
+          color: white; }
+    .gallery__item--2 {
+      grid-row: 6 / span 3;
+      grid-column: 8 / span 5; }
+      .gallery__item--2-container {
+        background-color: black;
+        height: 80px; }
+        .gallery__item--2-container-title {
+          font-size: 15px;
+          padding: 10px 10px 0 10px;
+          color: white; }
+        .gallery__item--2-container-date {
+          font-size: 13px;
+          padding: 0 10px;
+          margin: 5px 0;
+          color: white; }
+    .gallery__item--3 {
+      grid-row: 2 / span 3;
+      grid-column: 13 / span 5; }
+      .gallery__item--3-container {
+        background-color: black;
+        height: 80px; }
+        .gallery__item--3-container-title {
+          font-size: 15px;
+          padding: 10px 10px 0 10px;
+          color: white; }
+        .gallery__item--3-container-date {
+          font-size: 13px;
+          padding: 0 10px;
+          margin: 5px 0;
+          color: white; }
+    .gallery__item--4 {
+      grid-row: 6 / span 3;
+      grid-column: 13 / span 5; }
+      .gallery__item--4-container {
+        background-color: black;
+        height: 80px; }
+        .gallery__item--4-container-title {
+          font-size: 15px;
+          padding: 10px 10px 0 10px;
+          color: white; }
+        .gallery__item--4-container-date {
+          font-size: 13px;
+          padding: 0 10px;
+          margin: 5px 0;
+          color: white; }
+  .gallery__img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block; }
+  .gallery .gallery__item:hover > .gallery__img {
+    opacity: 0.7;
+    cursor: pointer;
+    transition: .3s; }
+
+.more {
+  position: relative;
+  margin-bottom: 400px; }
+  .more-line {
+    content: '';
+    background: #555;
+    position: absolute;
+    top: 15px;
+    width: 100%;
+    height: 1px;
+    z-index: 0; }
+  .more-title {
+    max-width: 140px;
+    margin: 0 auto;
+    padding: 5px;
+    font-size: 17px;
+    font-weight: bold;
+    transform: skewX(-15deg);
+    text-transform: uppercase;
+    z-index: 1;
+    color: white;
+    background-color: red; }

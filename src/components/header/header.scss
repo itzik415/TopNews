@@ -1,0 +1,54 @@
+.header__section {
+    display: flex;
+    font-size: 2rem;
+    align-items: center;
+    border-bottom: 5px solid red;
+    position: fixed;
+    background-color: white;
+    width: 1200px;
+    z-index:1000;
+
+    &-logo {
+        padding: 10px 15px;
+        font-size: 3rem;
+        font-weight: bolder;
+        font-family: Georgia;
+        flex:1;
+    }
+
+    &-list {
+        list-style: none;
+        display: flex;
+    }
+
+    &-list-object {
+        margin: 0 2.5rem;
+        font-weight: 100;
+
+        &:hover {
+            cursor: pointer;
+            color: red;
+            transition: 0.3s;
+        }
+    }
+}
+
+#nav-icon {
+    font-size: 3rem;
+
+    &:hover {
+        cursor: pointer;
+        color: red;
+        transition: 0.3s;
+    }
+}
+
+#search-icon {
+    font-size: 3rem;
+
+    &:hover {
+        cursor: pointer;
+        color: red;
+        transition: 0.3s;
+    }
+}

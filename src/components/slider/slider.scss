@@ -1,0 +1,68 @@
+.slider__section {
+    background-color: black;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+
+    &-image {
+        margin-top: 80px;
+        width: 630px;
+        height: 390px;
+        // background-image: 
+    }
+
+    &-article {
+        margin: 80px 0 0 20px;
+        width: 480px;
+
+        &-companyName {
+            font-size: 11px;
+            font-weight: bold;
+            color: grey;
+            margin-bottom: 10px;
+        }
+
+        &-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 28px;
+            line-height: 1.1;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        &-description {
+            font-size: 15px;
+            color: white;
+            font-weight: 100;
+            line-height: 1.4;
+        }
+    }
+}
+
+#arrowLeft {
+    font-size: 60px;
+    margin: auto 15px auto 0;
+    opacity: 0;
+    color: white;
+}
+
+#arrowRight {
+    font-size: 60px;
+    margin: auto 0 auto 15px;
+    opacity: 0;
+    color: white;
+}
+
+.slider__section:hover > #arrowRight,
+.slider__section:hover > #arrowLeft, {
+    opacity: 1;
+    transition: 0.5s;
+}
+
+#redName {
+    color: rgb(210, 0, 0);
+
+}
+
+
