@@ -25,11 +25,11 @@ class App extends Component {
   componentDidMount() {
     //API KEY 62abe08b0bac4d048638127c17e09e69
 
-    //Top Headlines
-    fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=62abe08b0bac4d048638127c17e09e69')
-      .then(response => response.json())
-      .then(myJson => this.setState({topArticles: myJson.articles.map(value => value)}))
-      .catch(err => console.log('ERROR: ' + err));
+    // //Top Headlines
+    // fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=62abe08b0bac4d048638127c17e09e69')
+    //   .then(response => response.json())
+    //   .then(myJson => this.setState({topArticles: myJson.articles.map(value => value)}))
+    //   .catch(err => console.log('ERROR: ' + err));
 
     //All sources
     fetch('https://newsapi.org/v2/everything?language=en&domains=wsj.com,nytimes.com,foxnews.com,nbcnews.com,news.nationalgeographic.comnfl.com/news,techcrunch.com,us.cnn.com&apiKey=62abe08b0bac4d048638127c17e09e69')
@@ -84,11 +84,35 @@ class App extends Component {
 
   categoryChange = (e) => {
     const a = e.currentTarget.textContent;
-    console.log(e.currentTarget.textContent)
     fetch(`https://newsapi.org/v2/everything?q=${a}&language=en&apiKey=62abe08b0bac4d048638127c17e09e69`)
       .then(response => response.json())
       .then(myJson => this.setState({trendingList: myJson.articles.map(value => value)}))
       .catch(err => console.log('ERROR: ' + err));
+  }
+
+  mouseEnter = (e) =>{
+    document.querySelector('.hidden__section').style.display = 'flex';
+    const a = e.currentTarget.textContent;
+    fetch(`https://newsapi.org/v2/everything?q=${a}&language=en&apiKey=62abe08b0bac4d048638127c17e09e69`)
+      .then(response => response.json())
+      .then(myJson => this.setState({trendingList: myJson.articles.map(value => value)}))
+      .catch(err => console.log('ERROR: ' + err));
+  }
+
+  mouseLeave = () => {
+    document.querySelector('.hidden__section').style.display = 'none';
+  }
+
+  buttonCloseNav = () => {
+    document.querySelector('.navBar__section').style.transform = 'translate(-350px)';
+    document.querySelector('.navBar__section').style.transition = '.4s';
+    document.querySelector('.blackBackground').style.display = 'none';
+  }
+
+  buttonOpenNav = () => {
+    document.querySelector('.navBar__section').style.transform = 'translate(0px)';
+    document.querySelector('.navBar__section').style.transition = '.4s';
+    document.querySelector('.blackBackground').style.display = 'block';
   }
 
   render() {
@@ -101,7 +125,12 @@ class App extends Component {
     
     return (
       <div className="App">
+        <div className="blackBackground"></div>
         <Header 
+          buttonCloseNav={() => this.buttonCloseNav()}
+          buttonOpenNav={() => this.buttonOpenNav()}
+          mouseLeave={() => this.mouseLeave()}
+          mouseEnter={(e) => this.mouseEnter(e)}
           buttonClick={() => this.buttonClick()}
           trendingList={this.state.trendingList}/>
         <Slider />

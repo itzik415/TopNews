@@ -21,7 +21,7 @@ const trending = (props) => {
             {
                 props.trendingList.map((article, index) => {
                     return (
-                        index < 6?
+                        index < 7?
                             <div className="trending__section-container" key={index}>
                                 <img className="trending__section-container-left" src={`${article.urlToImage}`} alt='article'/>
                                 <div className="trending__section-container-right">

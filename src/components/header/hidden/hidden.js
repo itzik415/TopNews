@@ -2,7 +2,7 @@ import React from 'react';
 
 const hidden = (props) => {
     return (
-        <div className="hidden__section">
+        <div onMouseLeave={props.mouseLeave} className="hidden__section">
             <div className="hidden__section-holder">
                 {
                     props.trendingList.map((article, index) => {

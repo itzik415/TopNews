@@ -1,10 +1,22 @@
 @import './components/basic/basic';
+
+//Header
 @import './components/header/header';
-@import './components/slider/slider';
-@import './components/latest/latest';
-@import './components/more/more';
-@import './components/news/news';
-@import './components/trending/trending';
-@import './components/footer/footer';
 @import './components/header/hidden/hidden';
+@import './components/header/navBar/navBar';
+@import './components/header/search/search';
+
+
+@import './components/slider/slider';
+
+@import './components/latest/latest';
+
+@import './components/more/more';
+
+@import './components/news/news';
+
+@import './components/trending/trending';
+
+@import './components/footer/footer';
+
 
