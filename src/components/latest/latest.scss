@@ -5,7 +5,7 @@
     grid-template: repeat(9, 70px) / repeat(17, 1fr);
     grid-gap: 1rem;
     max-width: 1200px;
-    margin: 30px 0;
+    margin: 30px auto;
     position: relative;
 
     &-line {
@@ -78,7 +78,7 @@
                 height: 80px;
 
                 &-title {
-                    font-size: 15px;
+                    font-size: 13px;
                     padding: 10px 10px 0 10px;
                     color: white;
                 }
@@ -101,7 +101,7 @@
                 height: 80px;
 
                 &-title {
-                    font-size: 15px;
+                    font-size: 13px;
                     padding: 10px 10px 0 10px;
                     color: white;
                 }
@@ -124,7 +124,7 @@
                 height: 80px;
 
                 &-title {
-                    font-size: 15px;
+                    font-size: 13px;
                     padding: 10px 10px 0 10px;
                     color: white;
                 }
@@ -147,7 +147,7 @@
                 height: 80px;
 
                 &-title {
-                    font-size: 15px;
+                    font-size: 13px;
                     padding: 10px 10px 0 10px;
                     color: white;
                 }
