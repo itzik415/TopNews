@@ -1,67 +1,96 @@
 .slider__section {
-    background-color: black;
-    height: 450px;
+    height: 480px;
     display: flex;
     justify-content: center;
+    background-color: black;
 
-    &-image {
-        margin-top: 80px;
-        width: 630px;
-        height: 390px;
-        // background-image: 
+    &-arrowDivLeft {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
     }
 
-    &-article {
-        margin: 80px 0 0 20px;
-        width: 480px;
+    &-arrowDivRight {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+    }
 
-        &-companyName {
-            font-size: 11px;
-            font-weight: bold;
-            color: grey;
-            margin-bottom: 10px;
-        }
+    &-middle {
+        height: 530px;
+        width: 1200px;
+        display: flex;
+        margin: 0;
+        overflow: hidden;
+        
+        &-0, 
+        &-1,
+        &-2,
+        &-3,
+        &-4 {
+            display: flex;
+            transition: 0.3s;
+            margin-top: 80px;
 
-        &-title {
-            font-family: 'Oswald', sans-serif;
-            font-size: 28px;
-            line-height: 1.1;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: white;
-        }
-
-        &-description {
-            font-size: 15px;
-            color: white;
-            font-weight: 100;
-            line-height: 1.4;
+            &-image {
+                width: 760px;
+                height: 430px;
+                border: 1px solid black;
+                object-fit: cover;
+            }
+        
+            &-article {
+                width: 420px;
+                margin-left: 20px;
+        
+                &-companyName {
+                    font-size: 13px;
+                    font-weight: bold;
+                    color: grey;
+                    margin-bottom: 10px;
+                }
+        
+                &-title {
+                    font-family: 'Oswald', sans-serif;
+                    font-size: 35px;
+                    line-height: 1.1;
+                    font-weight: 600;
+                    margin-bottom: 15px;
+                    color: white;
+                }
+        
+                &-description {
+                    font-size: 20px;
+                    color: white;
+                    font-weight: 100;
+                    line-height: 1.6;
+                }
+            }
         }
     }
 }
 
-#arrowLeft {
-    font-size: 60px;
-    margin: auto 15px auto 0;
-    opacity: 0;
-    color: white;
-}
 
-#arrowRight {
-    font-size: 60px;
-    margin: auto 0 auto 15px;
-    opacity: 0;
-    color: white;
-}
-
-.slider__section:hover > #arrowRight,
-.slider__section:hover > #arrowLeft, {
+.slider__section:hover > .slider__section-arrowDivLeft,
+.slider__section:hover > .slider__section-arrowDivRight {
     opacity: 1;
     transition: 0.5s;
 }
 
 #redName {
     color: rgb(210, 0, 0);
+}
+
+#arrowLeft,
+#arrowRight {
+    color: white;
+    font-size: 60px;
+    // opacity: 0;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 

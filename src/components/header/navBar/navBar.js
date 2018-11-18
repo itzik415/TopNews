@@ -4,7 +4,7 @@ const navBar = (props) => {
     return (
         <div className="navBar__section">
             <div className="navBar__section-head">
-                <a href="#" className="navBar__section-head-logo">TopNews</a>
+                <a href="home" className="navBar__section-head-logo">TopNews</a>
                 <ion-icon onClick={props.buttonCloseNav} id="closing-icon" name="close"></ion-icon>
             </div>
             <div className="navBar__section-content">

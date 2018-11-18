@@ -13,7 +13,7 @@ const news = (props) => {
                             <div className="news__section-container-right">
                                 <p className="news__section-container-right-name"><span id="redName">{article.source.name}</span> / {moment.tz(article.publishedAt,"UTC").fromNow()}</p>
                                 <p className="news__section-container-right-title">{article.title}</p>
-                                <p className="news__section-container-right-description">{article.description.slice(1,200)}</p>
+                                <p className="news__section-container-right-description">{article.description.slice(0,200)}</p>
                             </div>
                         </div>
                     )

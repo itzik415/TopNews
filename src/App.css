@@ -45,14 +45,14 @@ html {
       .header .header__section-middle-list {
         list-style: none;
         display: flex; }
-      .header .header__section-middle-list-object {
-        margin: 0 2.5rem;
-        font-weight: 100;
-        padding: 15px 0; }
-        .header .header__section-middle-list-object:hover {
-          cursor: pointer;
-          color: red;
-          transition: 0.3s; }
+        .header .header__section-middle-list-object {
+          margin: 0 2.5rem;
+          font-weight: 100;
+          padding: 15px 0; }
+          .header .header__section-middle-list-object:hover {
+            cursor: pointer;
+            color: red;
+            transition: 0.3s; }
 
 #nav-icon {
   font-size: 3rem; }
@@ -75,12 +75,13 @@ html {
   z-index: 100000;
   position: fixed;
   top: 60px;
-  display: none; }
+  display: none;
+  box-shadow: 1px 5px 10px grey; }
   .hidden__section-holder {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-    margin-bottom: 20px; }
+    margin-bottom: 10px; }
     .hidden__section-holder-container {
       display: flex;
       flex-direction: column;
@@ -90,18 +91,17 @@ html {
       .hidden__section-holder-container:hover {
         cursor: pointer; }
       .hidden__section-holder-container-img {
-        width: 250px;
-        height: 200px;
+        width: 230px;
+        height: 160px;
         object-fit: cover;
         margin-top: 15px;
         transition: .3s; }
       .hidden__section-holder-container-title {
-        width: 250px;
-        height: 100px;
+        width: 230px;
+        height: 70px;
         font-size: 15px;
-        padding: 15px;
-        background-color: black;
-        color: white; }
+        padding: 15px 15px 0 0;
+        color: grey; }
 
 .hidden__section-holder-container:hover > .hidden__section-holder-container-img {
   transform: scale(1.1); }
@@ -161,54 +161,71 @@ html {
     color: red; }
 
 .slider__section {
-  background-color: black;
-  height: 450px;
+  height: 480px;
   display: flex;
-  justify-content: center; }
-  .slider__section-image {
-    margin-top: 80px;
-    width: 630px;
-    height: 390px; }
-  .slider__section-article {
-    margin: 80px 0 0 20px;
-    width: 480px; }
-    .slider__section-article-companyName {
-      font-size: 11px;
-      font-weight: bold;
-      color: grey;
-      margin-bottom: 10px; }
-    .slider__section-article-title {
-      font-family: 'Oswald', sans-serif;
-      font-size: 28px;
-      line-height: 1.1;
-      font-weight: 600;
-      margin-bottom: 15px;
-      color: white; }
-    .slider__section-article-description {
-      font-size: 15px;
-      color: white;
-      font-weight: 100;
-      line-height: 1.4; }
+  justify-content: center;
+  background-color: black; }
+  .slider__section-arrowDivLeft {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; }
+  .slider__section-arrowDivRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; }
+  .slider__section-middle {
+    height: 530px;
+    width: 1200px;
+    display: flex;
+    margin: 0;
+    overflow: hidden; }
+    .slider__section-middle-0, .slider__section-middle-1, .slider__section-middle-2, .slider__section-middle-3, .slider__section-middle-4 {
+      display: flex;
+      transition: 0.3s;
+      margin-top: 80px; }
+      .slider__section-middle-0-image, .slider__section-middle-1-image, .slider__section-middle-2-image, .slider__section-middle-3-image, .slider__section-middle-4-image {
+        width: 760px;
+        height: 430px;
+        border: 1px solid black;
+        object-fit: cover; }
+      .slider__section-middle-0-article, .slider__section-middle-1-article, .slider__section-middle-2-article, .slider__section-middle-3-article, .slider__section-middle-4-article {
+        width: 420px;
+        margin-left: 20px; }
+        .slider__section-middle-0-article-companyName, .slider__section-middle-1-article-companyName, .slider__section-middle-2-article-companyName, .slider__section-middle-3-article-companyName, .slider__section-middle-4-article-companyName {
+          font-size: 13px;
+          font-weight: bold;
+          color: grey;
+          margin-bottom: 10px; }
+        .slider__section-middle-0-article-title, .slider__section-middle-1-article-title, .slider__section-middle-2-article-title, .slider__section-middle-3-article-title, .slider__section-middle-4-article-title {
+          font-family: 'Oswald', sans-serif;
+          font-size: 35px;
+          line-height: 1.1;
+          font-weight: 600;
+          margin-bottom: 15px;
+          color: white; }
+        .slider__section-middle-0-article-description, .slider__section-middle-1-article-description, .slider__section-middle-2-article-description, .slider__section-middle-3-article-description, .slider__section-middle-4-article-description {
+          font-size: 20px;
+          color: white;
+          font-weight: 100;
+          line-height: 1.6; }
 
-#arrowLeft {
-  font-size: 60px;
-  margin: auto 15px auto 0;
-  opacity: 0;
-  color: white; }
-
-#arrowRight {
-  font-size: 60px;
-  margin: auto 0 auto 15px;
-  opacity: 0;
-  color: white; }
-
-.slider__section:hover > #arrowRight,
-.slider__section:hover > #arrowLeft {
+.slider__section:hover > .slider__section-arrowDivLeft,
+.slider__section:hover > .slider__section-arrowDivRight {
   opacity: 1;
   transition: 0.5s; }
 
 #redName {
   color: #d20000; }
+
+#arrowLeft,
+#arrowRight {
+  color: white;
+  font-size: 60px; }
+  #arrowLeft:hover,
+  #arrowRight:hover {
+    cursor: pointer; }
 
 .gallery {
   grid-column: full-start / full-end;
@@ -246,7 +263,8 @@ html {
       padding: 4px 10px; }
   .gallery__item {
     position: relative;
-    background-color: black; }
+    background-color: black;
+    border: 1px solid grey; }
     .gallery__item--0 {
       grid-row: 2 / span 6;
       grid-column: 1 / span 7; }
@@ -254,8 +272,10 @@ html {
         background-color: black;
         grid-row: 7 / span 2;
         grid-column: 1 / span 7;
-        width: 100%;
-        height: 160px; }
+        width: 100.3%;
+        height: 160px;
+        border: 1px solid red;
+        border-top: none; }
         .gallery__item--0-container-title {
           font-size: 25px;
           padding: 20px 15px 15px 15px;
@@ -396,8 +416,9 @@ html {
         font-size: 15px;
         color: grey; }
       .news__section-container-right-title {
-        font-size: 25px;
-        font-family: 'Bangers';
+        font-size: 30px;
+        font-family: 'Oswald';
+        line-height: 1;
         margin: 10px 0; }
       .news__section-container-right-description {
         font-size: 18px;
@@ -438,10 +459,13 @@ html {
       font-weight: bold;
       transform: skewx(-15deg);
       padding: 5px 10px;
-      margin: 5px; }
+      margin: 5px;
+      background-image: linear-gradient(120deg, transparent 0%, transparent 50%, red 50%);
+      background-size: 500%;
+      transition: .4s; }
       .trending__section-up-button:hover {
-        color: black;
-        transition: .3s;
+        background-position-x: 150px;
+        color: white;
         cursor: pointer; }
   .trending__section-container {
     width: 100%;
@@ -461,6 +485,11 @@ html {
         font-size: 15px;
         font-family: sans-serif;
         font-weight: bold; }
+
+#red-background {
+  background-color: red;
+  padding: 5px 10px;
+  color: white; }
 
 .footer__section {
   width: 100%; }

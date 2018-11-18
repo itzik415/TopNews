@@ -8,7 +8,7 @@ const header = (props) => {
             <div className="header__section">
                 <div className="header__section-middle">
                     <ion-icon onClick={props.buttonOpenNav} id="nav-icon" name="menu"></ion-icon>
-                    <a href="#" className="header__section-middle-logo">TopNews</a>
+                    <a href="home" className="header__section-middle-logo">TopNews</a>
                     <ul className="header__section-middle-list">
                         <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object">Business</li>
                         <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object">Entertainment</li>

@@ -18,7 +18,9 @@ class App extends Component {
       topArticles: [],
       allArticles: [],
       trendingList: [],
-      pageNumber: 2
+      pageNumber: 2,
+      articleNumber: 0,
+      translate: 0
     }
   }
 
@@ -26,10 +28,10 @@ class App extends Component {
     //API KEY 62abe08b0bac4d048638127c17e09e69
 
     // //Top Headlines
-    // fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=62abe08b0bac4d048638127c17e09e69')
-    //   .then(response => response.json())
-    //   .then(myJson => this.setState({topArticles: myJson.articles.map(value => value)}))
-    //   .catch(err => console.log('ERROR: ' + err));
+    fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=62abe08b0bac4d048638127c17e09e69')
+      .then(response => response.json())
+      .then(myJson => this.setState({topArticles: myJson.articles.map(value => value)}))
+      .catch(err => console.log('ERROR: ' + err));
 
     //All sources
     fetch('https://newsapi.org/v2/everything?language=en&domains=wsj.com,nytimes.com,foxnews.com,nbcnews.com,news.nationalgeographic.comnfl.com/news,techcrunch.com,us.cnn.com&apiKey=62abe08b0bac4d048638127c17e09e69')
@@ -115,16 +117,52 @@ class App extends Component {
     document.querySelector('.blackBackground').style.display = 'block';
   }
 
+  
+  movingArticlesRight = () => {
+    if(this.state.articleNumber < 4) {
+      for(let i = 0; i < 5; i++) {
+        document.querySelector(`.slider__section-middle-${i}`).style.transform = `translateX(${this.state.translate-1200}px)`; 
+      }
+      this.setState({translate: this.state.translate - 1200});
+      this.setState({articleNumber: this.state.articleNumber + 1});
+      
+    }else {
+      for(let i = 0; i < 5; i++) {
+        document.querySelector(`.slider__section-middle-${i}`).style.transform = `translateX(0)`;
+      }
+      this.setState({articleNumber: 0});
+      this.setState({translate: 0});
+    }
+  }
+
+  movingArticlesLeft = () => {
+    if(this.state.articleNumber > 0) {
+      for(let i = 0; i < 5; i++) {
+        document.querySelector(`.slider__section-middle-${i}`).style.transform = `translateX(${this.state.translate + 1200}px)`;   
+      }
+
+      this.setState({translate: this.state.translate + 1200});
+      this.setState({articleNumber: this.state.articleNumber - 1});
+      
+    }else {
+      for(let i = 0; i < 5; i++) {
+        document.querySelector(`.slider__section-middle-${i}`).style.transform = `translateX(-4800px)`;  
+      }
+      this.setState({articleNumber: 4});
+      this.setState({translate: -4800});
+    }
+  }
+
   render() {
     // console.log(this.state.entertainment);
     // console.log(this.state.general);
     // console.log(this.state.business);
     // if(this.state.allArticles.length > 0) {
-    //   console.log(this.state.allArticles)
+    //   console.log(this.state.topArticles)
     // }
     
     return (
-      <div className="App">
+      <div className="App" id="home">
         <div className="blackBackground"></div>
         <Header 
           buttonCloseNav={() => this.buttonCloseNav()}
@@ -133,7 +171,10 @@ class App extends Component {
           mouseEnter={(e) => this.mouseEnter(e)}
           buttonClick={() => this.buttonClick()}
           trendingList={this.state.trendingList}/>
-        <Slider />
+        <Slider 
+          movingArticlesLeft={() => this.movingArticlesLeft()}
+          movingArticlesRight={() => this.movingArticlesRight()}
+          topArticles={this.state.topArticles}/>
         <Latest topArticles={this.state.topArticles}/>
         <More 
           categoryChange={(e)=>this.categoryChange(e)}

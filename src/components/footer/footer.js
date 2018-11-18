@@ -4,7 +4,7 @@ const footer = (props) => {
     return (
         <div className="footer__section">
             <div className="footer__section-up">
-                <a href="#" className="footer__section-up-logo">TopNews</a>
+                <a href="home" className="footer__section-up-logo">TopNews</a>
             </div>
             <div className="footer__section-down">
                 <p className="footer__section-down-copyright">Copyright © 2018 Isaac Shaoulian</p>
