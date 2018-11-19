@@ -1,0 +1,70 @@
+.header {
+    position: relative;
+
+    .header__section {
+        display: flex;
+        font-size: 2rem;
+        align-items: center;
+        border-bottom: 5px solid $base-red;
+        position: fixed;
+        background-color: white;
+        width: 100%;
+        z-index:1000;
+    
+        &-middle {
+            width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            
+            &-logo {
+                padding: 10px 15px;
+                font-size: 3rem;
+                font-weight: bolder;
+                font-family: Georgia;
+                flex:1;
+                text-decoration: none;
+                color: black;
+            }
+        
+            &-list {
+                list-style: none;
+                display: flex;
+
+                &-object {
+                    margin: 0 2.5rem;
+                    font-weight: 100;
+                    padding: 15px 0;
+            
+                    &:hover {
+                        cursor: pointer;
+                        color: $base-red;
+                        transition: 0.3s;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+#nav-icon {
+    font-size: 3rem;
+
+    &:hover {
+        cursor: pointer;
+        color: $base-red;
+        transition: 0.3s;
+    }
+}
+
+#search-icon {
+    font-size: 3rem;
+
+    &:hover {
+        cursor: pointer;
+        color: $base-red;
+        transition: 0.3s;
+    }
+}

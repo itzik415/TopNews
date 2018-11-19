@@ -13,7 +13,7 @@ const slider = (props) => {
                     props.topArticles.map((article, index) => {
                         return (
                             index < 5?
-                                <div className={`slider__section-middle-${index}`} key={index}>
+                                <div className={`slider__section-middle-${index}`} onClick={props.articleHandle} key={index}>
                                     <img className={`slider__section-middle-${index}-image`} src={`${article.urlToImage === null ? require('../../images/topNewsLogo.png') :article.urlToImage}`} alt='article'/>
                                     <div className={`slider__section-middle-${index}-article`}>
                                         <p className={`slider__section-middle-${index}-article-companyName`}><span id="redName">{article.source.name}</span> / {moment.tz(article.publishedAt,"UTC").fromNow()}</p>

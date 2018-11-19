@@ -11,7 +11,7 @@ const latest = (props) => {
                 props.topArticles.map((article,index) => {
                     return (
                         index > 4 && index < 10?
-                        <figure className={`gallery__item gallery__item--${index-5}`} key={index-3}>    
+                        <figure className={`gallery__item gallery__item--${index-5}`} onClick={props.articleHandle} key={index-3}>    
                             <img className="gallery__img" alt='latest' src={`${article.urlToImage === null ? require('../../images/topNewsLogo.png') :article.urlToImage}`} />    
                             <figure className={`gallery__item--${index-5}-container`}>                      
                                 <p className={`gallery__item--${index-5}-container-title`}>{article.title}</p>

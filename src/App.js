@@ -5,6 +5,11 @@ import Latest from './components/latest/latest';
 import More from './components/more/more';
 import Footer from './components/footer/footer';
 
+String.prototype.indexOfEnd = function(string) {
+  var io = this.indexOf(string);
+  return io == -1 ? -1 : io + string.length;
+}
+
 class App extends Component {
   constructor() {
     super();
@@ -33,8 +38,8 @@ class App extends Component {
       .then(myJson => this.setState({topArticles: myJson.articles.map(value => value)}))
       .catch(err => console.log('ERROR: ' + err));
 
-    //All sources
-    fetch('https://newsapi.org/v2/everything?language=en&domains=wsj.com,nytimes.com,foxnews.com,nbcnews.com,news.nationalgeographic.comnfl.com/news,techcrunch.com,us.cnn.com&apiKey=62abe08b0bac4d048638127c17e09e69')
+    //Top sources
+    fetch('https://newsapi.org/v2/everything?language=en&domains=wsj.com,nytimes.com,foxnews.com,nbcnews.com,news.nationalgeographic.comnfl.com/news,us.cnn.com&apiKey=62abe08b0bac4d048638127c17e09e69')
       .then(response => response.json())
       .then(myJson => this.setState({allArticles: myJson.articles.map(value => value)}))
       .catch(err => console.log('ERROR: ' + err));
@@ -76,6 +81,7 @@ class App extends Component {
       .catch(err => console.log('ERROR: ' + err));
   }
 
+  //News button clicking for getting more news from popular wesites
   buttonClick = () => {
     fetch(`https://newsapi.org/v2/everything?language=en&domains=wsj.com,nytimes.com,foxnews.com,nbcnews.com,news.nationalgeographic.comnfl.com/news,techcrunch.com,us.cnn.com&apiKey=62abe08b0bac4d048638127c17e09e69&page=${this.state.pageNumber}`)
       .then(response => response.json())
@@ -84,6 +90,7 @@ class App extends Component {
     this.setState({pageNumber: this.state.pageNumber+1})
   }
 
+  //For opening the right category on button click in Trendings
   categoryChange = (e) => {
     const a = e.currentTarget.textContent;
     fetch(`https://newsapi.org/v2/everything?q=${a}&language=en&apiKey=62abe08b0bac4d048638127c17e09e69`)
@@ -92,6 +99,7 @@ class App extends Component {
       .catch(err => console.log('ERROR: ' + err));
   }
 
+  //Opening header navigation options when hover
   mouseEnter = (e) =>{
     document.querySelector('.hidden__section').style.display = 'flex';
     const a = e.currentTarget.textContent;
@@ -101,16 +109,19 @@ class App extends Component {
       .catch(err => console.log('ERROR: ' + err));
   }
 
+  //Closing header navigation options when hover
   mouseLeave = () => {
     document.querySelector('.hidden__section').style.display = 'none';
   }
 
+  //Button for opening navigation bar
   buttonCloseNav = () => {
     document.querySelector('.navBar__section').style.transform = 'translate(-350px)';
     document.querySelector('.navBar__section').style.transition = '.4s';
     document.querySelector('.blackBackground').style.display = 'none';
   }
 
+  //Button for closing navigation bar
   buttonOpenNav = () => {
     document.querySelector('.navBar__section').style.transform = 'translate(0px)';
     document.querySelector('.navBar__section').style.transition = '.4s';
@@ -118,6 +129,7 @@ class App extends Component {
   }
 
   
+  // Slider button right
   movingArticlesRight = () => {
     if(this.state.articleNumber < 4) {
       for(let i = 0; i < 5; i++) {
@@ -135,12 +147,12 @@ class App extends Component {
     }
   }
 
+  // Slider button left
   movingArticlesLeft = () => {
     if(this.state.articleNumber > 0) {
       for(let i = 0; i < 5; i++) {
         document.querySelector(`.slider__section-middle-${i}`).style.transform = `translateX(${this.state.translate + 1200}px)`;   
       }
-
       this.setState({translate: this.state.translate + 1200});
       this.setState({articleNumber: this.state.articleNumber - 1});
       
@@ -153,6 +165,16 @@ class App extends Component {
     }
   }
 
+  //Getting the right article with click - Slider and Latest
+  articleHandle = (article) => {
+    var name = article.currentTarget.textContent;
+    const chosenArticle = this.state.topArticles.filter((item) => {
+      return name.slice(name.search(item.title), name.indexOfEnd(item.title)) === item.title;
+    })
+    console.log(chosenArticle)
+  }
+
+
   render() {
     // console.log(this.state.entertainment);
     // console.log(this.state.general);
@@ -163,25 +185,38 @@ class App extends Component {
     
     return (
       <div className="App" id="home">
-        <div className="blackBackground"></div>
+        <div className="blackBackground" onClick={() =>this.buttonCloseNav()}></div>
+
         <Header 
           buttonCloseNav={() => this.buttonCloseNav()}
           buttonOpenNav={() => this.buttonOpenNav()}
           mouseLeave={() => this.mouseLeave()}
           mouseEnter={(e) => this.mouseEnter(e)}
           buttonClick={() => this.buttonClick()}
-          trendingList={this.state.trendingList}/>
+          trendingList={this.state.trendingList}
+        />
+
         <Slider 
+          articleHandle={(article) => {this.articleHandle(article)}}
           movingArticlesLeft={() => this.movingArticlesLeft()}
           movingArticlesRight={() => this.movingArticlesRight()}
-          topArticles={this.state.topArticles}/>
-        <Latest topArticles={this.state.topArticles}/>
+          topArticles={this.state.topArticles}
+        />
+
+        <Latest 
+          articleHandle={(article) => {this.articleHandle(article)}}
+          topArticles={this.state.topArticles}
+        />
+
         <More 
           categoryChange={(e)=>this.categoryChange(e)}
           trendingList={this.state.trendingList}
           allArticles={this.state.allArticles} 
-          buttonClick={() => this.buttonClick()}/>
+          buttonClick={() => this.buttonClick()}
+        />
+
         <Footer />
+
       </div>
     );
   }

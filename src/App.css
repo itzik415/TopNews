@@ -24,7 +24,7 @@ html {
     display: flex;
     font-size: 2rem;
     align-items: center;
-    border-bottom: 5px solid red;
+    border-bottom: 5px solid #d40000;
     position: fixed;
     background-color: white;
     width: 100%;
@@ -51,21 +51,21 @@ html {
           padding: 15px 0; }
           .header .header__section-middle-list-object:hover {
             cursor: pointer;
-            color: red;
+            color: #d40000;
             transition: 0.3s; }
 
 #nav-icon {
   font-size: 3rem; }
   #nav-icon:hover {
     cursor: pointer;
-    color: red;
+    color: #d40000;
     transition: 0.3s; }
 
 #search-icon {
   font-size: 3rem; }
   #search-icon:hover {
     cursor: pointer;
-    color: red;
+    color: #d40000;
     transition: 0.3s; }
 
 .hidden__section {
@@ -107,7 +107,7 @@ html {
   transform: scale(1.1); }
 
 .hidden__section-holder-container:hover > .hidden__section-holder-container-title {
-  color: red; }
+  color: #d40000; }
 
 .navBar__section {
   width: 350px;
@@ -141,10 +141,10 @@ html {
       color: grey;
       padding: 5px 10px;
       margin: 10px 0 10px 15px;
-      border-left: 2px solid red;
+      border-left: 2px solid #d40000;
       transform: skew(15deg);
       text-decoration: none;
-      background-image: linear-gradient(120deg, transparent 0%, transparent 50%, red 50%);
+      background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #d40000 50%);
       background-size: 220%;
       transition: .4s; }
       .navBar__section-content-list-object:hover {
@@ -158,7 +158,7 @@ html {
   transition: .3s; }
   #closing-icon:hover {
     cursor: pointer;
-    color: red; }
+    color: #d40000; }
 
 .slider__section {
   height: 480px;
@@ -186,12 +186,12 @@ html {
       transition: 0.3s;
       margin-top: 80px; }
       .slider__section-middle-0-image, .slider__section-middle-1-image, .slider__section-middle-2-image, .slider__section-middle-3-image, .slider__section-middle-4-image {
-        width: 760px;
+        width: 730px;
         height: 430px;
         border: 1px solid black;
         object-fit: cover; }
       .slider__section-middle-0-article, .slider__section-middle-1-article, .slider__section-middle-2-article, .slider__section-middle-3-article, .slider__section-middle-4-article {
-        width: 420px;
+        width: 450px;
         margin-left: 20px; }
         .slider__section-middle-0-article-companyName, .slider__section-middle-1-article-companyName, .slider__section-middle-2-article-companyName, .slider__section-middle-3-article-companyName, .slider__section-middle-4-article-companyName {
           font-size: 13px;
@@ -200,13 +200,13 @@ html {
           margin-bottom: 10px; }
         .slider__section-middle-0-article-title, .slider__section-middle-1-article-title, .slider__section-middle-2-article-title, .slider__section-middle-3-article-title, .slider__section-middle-4-article-title {
           font-family: 'Oswald', sans-serif;
-          font-size: 35px;
+          font-size: 45px;
           line-height: 1.1;
           font-weight: 600;
           margin-bottom: 15px;
           color: white; }
         .slider__section-middle-0-article-description, .slider__section-middle-1-article-description, .slider__section-middle-2-article-description, .slider__section-middle-3-article-description, .slider__section-middle-4-article-description {
-          font-size: 20px;
+          font-size: 17px;
           color: white;
           font-weight: 100;
           line-height: 1.6; }
@@ -258,7 +258,7 @@ html {
     text-transform: uppercase;
     z-index: 1; }
     .gallery-title-text {
-      background-color: red;
+      background-color: #d40000;
       color: white;
       padding: 4px 10px; }
   .gallery__item {
@@ -274,7 +274,7 @@ html {
         grid-column: 1 / span 7;
         width: 100.3%;
         height: 160px;
-        border: 1px solid red;
+        border: 1px solid #d40000;
         border-top: none; }
         .gallery__item--0-container-title {
           font-size: 25px;
@@ -376,7 +376,7 @@ html {
     text-transform: uppercase;
     z-index: 1;
     color: white;
-    background-color: red; }
+    background-color: #d40000; }
   .more-section {
     display: flex; }
 
@@ -391,7 +391,7 @@ html {
     margin: 20px auto;
     text-align: center;
     background-color: white;
-    border: 2px solid black;
+    border: 1px solid black;
     padding: 10px 0;
     font-size: 20px;
     font-family: "Bangers"; }
@@ -446,7 +446,7 @@ html {
     text-transform: uppercase;
     z-index: 1;
     color: white;
-    background-color: red;
+    background-color: #d40000;
     display: flex;
     justify-content: center; }
   .trending__section-up {
@@ -460,7 +460,7 @@ html {
       transform: skewx(-15deg);
       padding: 5px 10px;
       margin: 5px;
-      background-image: linear-gradient(120deg, transparent 0%, transparent 50%, red 50%);
+      background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #d40000 50%);
       background-size: 500%;
       transition: .4s; }
       .trending__section-up-button:hover {
@@ -487,7 +487,7 @@ html {
         font-weight: bold; }
 
 #red-background {
-  background-color: red;
+  background-color: #d40000;
   padding: 5px 10px;
   color: white; }
 
@@ -507,7 +507,7 @@ html {
       text-decoration: none;
       transition: .4s; }
       .footer__section-up-logo:hover {
-        color: red; }
+        color: #d40000; }
   .footer__section-down {
     background-color: black;
     display: flex;
