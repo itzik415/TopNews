@@ -12,7 +12,6 @@ const header = (props) => {
                     <ul className="header__section-middle-list">
                         <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object">Business</li>
                         <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object">Entertainment</li>
-                        <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object">General</li>
                         <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object">Health</li>
                         <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object">Science</li>
                         <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object">Sports</li>

@@ -9,13 +9,12 @@ const navBar = (props) => {
             </div>
             <div className="navBar__section-content">
                 <ul className="navBar__section-content-list">
-                    <a href='#' className="navBar__section-content-list-object"> Business</a>
-                    <a href='#' className="navBar__section-content-list-object"> Entertainment</a>
-                    <a href='#' className="navBar__section-content-list-object"> General</a>
-                    <a href='#' className="navBar__section-content-list-object"> Health</a>
-                    <a href='#' className="navBar__section-content-list-object"> Science</a>
-                    <a href='#' className="navBar__section-content-list-object"> Sports</a>
-                    <a href='#' className="navBar__section-content-list-object"> Technology</a>
+                    <p className="navBar__section-content-list-object"> Business</p>
+                    <p className="navBar__section-content-list-object"> Entertainment</p>
+                    <p className="navBar__section-content-list-object"> Health</p>
+                    <p className="navBar__section-content-list-object"> Science</p>
+                    <p className="navBar__section-content-list-object"> Sports</p>
+                    <p className="navBar__section-content-list-object"> Technology</p>
                 </ul>
             </div>
         </div>

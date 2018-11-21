@@ -6,8 +6,8 @@ import More from './components/more/more';
 import Footer from './components/footer/footer';
 
 String.prototype.indexOfEnd = function(string) {
-  var io = this.indexOf(string);
-  return io == -1 ? -1 : io + string.length;
+  var index = this.indexOf(string);
+  return index == -1 ? -1 : index + string.length;
 }
 
 class App extends Component {
@@ -31,7 +31,7 @@ class App extends Component {
 
   componentDidMount() {
     //API KEY 62abe08b0bac4d048638127c17e09e69
-
+  
     // //Top Headlines
     fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=62abe08b0bac4d048638127c17e09e69')
       .then(response => response.json())
@@ -75,10 +75,18 @@ class App extends Component {
       .catch(err => console.log('ERROR: ' + err));
 
     //All Technology
-    fetch('https://newsapi.org/v2/everything?q=technology&language=en&apiKey=62abe08b0bac4d048638127c17e09e69')
+    fetch('https://newsapi.org/v2/everything?q=tech&language=en&apiKey=62abe08b0bac4d048638127c17e09e69')
       .then(response => response.json())
       .then(myJson => this.setState({technology: myJson.articles.map(value => value)}))
       .catch(err => console.log('ERROR: ' + err));
+    
+    fetch('https://newsapi.org/v2/everything?domains=wsj.com,nytimes.com&apiKey=62abe08b0bac4d048638127c17e09e69')
+      .then(response => response.json())
+      // .then(myJson => this.setState({technology: myJson.articles.map(value => value)}))
+      .then(myJson => console.log(myJson))
+      .catch(err => console.log('ERROR: ' + err));
+
+      
   }
 
   //News button clicking for getting more news from popular wesites
