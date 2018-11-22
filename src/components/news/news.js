@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import momentTimezone from 'moment-timezone';
+import { Link } from 'react-router-dom';
 
 const news = (props) => {
     return (
@@ -8,6 +9,7 @@ const news = (props) => {
              {
                 props.allArticles.map((article, index) => {
                     return (
+                        <Link id='link' to={`/article/${article.title}`}>
                         <div className="news__section-container" key={index}>
                             <img className="news__section-container-left" src={`${article.urlToImage === null ? require('../../images/topNewsLogo.png') :article.urlToImage}`} alt='article'/>
                             <div className="news__section-container-right">
@@ -16,6 +18,7 @@ const news = (props) => {
                                 <p className="news__section-container-right-description">{article.description.slice(0,200)}</p>
                             </div>
                         </div>
+                        </Link>
                     )
                 })
              }

@@ -24,6 +24,10 @@
         display: flex;
         margin: 0;
         overflow: hidden;
+
+        &:hover {
+            cursor: pointer;
+        }
         
         &-0, 
         &-1,
@@ -33,6 +37,10 @@
             display: flex;
             transition: 0.3s;
             margin-top: 80px;
+
+            &:hover > &-article {
+                opacity: 0.8;
+            }
 
             &-image {
                 width: 730px;
@@ -44,6 +52,11 @@
             &-article {
                 width: 450px;
                 margin-left: 20px;
+                transition: 0.3s;
+
+                &:hover {
+                    opacity: 0.8;
+                }
         
                 &-companyName {
                     font-size: 13px;
@@ -87,9 +100,10 @@
 #arrowRight {
     color: white;
     font-size: 60px;
-    // opacity: 0;
+    
     &:hover {
         cursor: pointer;
+        color: grey;
     }
 }
 

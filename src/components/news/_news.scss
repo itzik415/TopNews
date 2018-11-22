@@ -30,12 +30,25 @@
         height: 220px;
         display: flex;
         margin: 20px 0;
+        transition: .3s;
+        overflow: hidden;
+        
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &:hover > &-right  {
+            opacity: 0.6;
+            transition: .3s;
+        }
 
 
         &-left {
             min-width: 40%;
             max-width: 40%;
             object-fit: cover;
+
         }
 
         &-right {
@@ -52,6 +65,7 @@
                 font-family: 'Oswald';
                 line-height: 1;
                 margin: 10px 0;
+                color: black;
             }
 
             &-description {

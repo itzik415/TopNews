@@ -71,12 +71,14 @@
             &-name {
                 font-size: 12px;
                 padding-top: 5px;
+                color: grey;
             }
 
             &-title {
                 font-size: 15px;
                 font-family: sans-serif;
                 font-weight: bold;
+                color: black;
             }
         }
     }
@@ -86,4 +88,8 @@
     background-color: $base-red;
     padding: 5px 10px;
     color: white;
+}
+
+.trending__section-container:hover > .trending__section-container-right {
+    opacity: 0.6;
 }

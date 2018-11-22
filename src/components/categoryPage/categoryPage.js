@@ -9,7 +9,7 @@ const categoryPage = (props) => {
         <div className="categoryPage">
             <CategoryPageTop />
             <div className="categoryPage-bottom">
-                
+                <CategoryPageList />
                 <Trending />
             </div>
         </div>

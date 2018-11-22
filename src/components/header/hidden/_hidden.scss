@@ -18,7 +18,6 @@
             display: flex;
             flex-direction: column;
             align-content: center;
-            margin: 5px 5px 0 5px;
             overflow: hidden;
 
             &:hover {
@@ -38,16 +37,21 @@
                 height: 70px;
                 font-size: 15px;
                 padding: 15px 15px 0 0;
-                color: grey;
+                color: black;
+                transition: .3s;
             }
         }
     }
 }
 
 .hidden__section-holder-container:hover > .hidden__section-holder-container-img {
-    transform: scale(1.1);
+    opacity: 0.7;
 }
 
 .hidden__section-holder-container:hover > .hidden__section-holder-container-title {
     color: $base-red;
+}
+
+#link {
+    text-decoration: none;
 }

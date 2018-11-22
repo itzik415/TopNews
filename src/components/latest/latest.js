@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import momentTimezone from 'moment-timezone';
+import { Link } from 'react-router-dom';
 
 const latest = (props) => {
     return (
@@ -12,11 +13,13 @@ const latest = (props) => {
                     return (
                         index > 4 && index < 10?
                         <figure className={`gallery__item gallery__item--${index-5}`} onClick={props.articleHandle} key={index-3}>    
-                            <img className="gallery__img" alt='latest' src={`${article.urlToImage === null ? require('../../images/topNewsLogo.png') :article.urlToImage}`} />    
-                            <figure className={`gallery__item--${index-5}-container`}>                      
-                                <p className={`gallery__item--${index-5}-container-title`}>{article.title}</p>
-                                <p className={`gallery__item--${index-5}-container-date`}><span id="redName">{article.source.name}</span> / {moment.tz(article.publishedAt,"UTC").fromNow()}</p>
-                            </figure>                        
+                            <Link id="link" to={`/article/${article.title}`}>
+                                <img className="gallery__img" alt='latest' src={`${article.urlToImage === null ? require('../../images/topNewsLogo.png') :article.urlToImage}`} />    
+                                <figure className={`gallery__item--${index-5}-container`}>                      
+                                    <p className={`gallery__item--${index-5}-container-title`}>{article.title}</p>
+                                    <p className={`gallery__item--${index-5}-container-date`}><span id="redName">{article.source.name}</span> / {moment.tz(article.publishedAt,"UTC").fromNow()}</p>
+                                </figure>                        
+                            </Link>
                         </figure>:
                         null
                     )
