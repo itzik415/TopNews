@@ -9,7 +9,7 @@ const news = (props) => {
                 props.allArticles.map((article, index) => {
                     return (
                         <div className="news__section-container" key={index}>
-                            <img className="news__section-container-left" src={`${article.urlToImage}`} alt='article'/>
+                            <img className="news__section-container-left" src={`${article.urlToImage === null ? require('../../images/topNewsLogo.png') :article.urlToImage}`} alt='article'/>
                             <div className="news__section-container-right">
                                 <p className="news__section-container-right-name"><span id="redName">{article.source.name}</span> / {moment.tz(article.publishedAt,"UTC").fromNow()}</p>
                                 <p className="news__section-container-right-title">{article.title}</p>

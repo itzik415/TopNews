@@ -9,16 +9,6 @@
 
         &-logo {
             padding: 60px;
-            font-size: 50px;
-            font-weight: bolder;
-            font-family: Georgia;
-            color: white;
-            text-decoration: none;
-            transition: .4s;
-
-            &:hover {
-                color: $base-red;
-            }
         }
     }
 
@@ -41,5 +31,18 @@
             font-size: 11px;
             color: white
         }
+    }
+}
+
+#header-footer {
+    font-size: 5rem;
+    font-weight: bolder;
+    font-family: Georgia;
+    color: white;
+    text-decoration: none;
+    transition: .4s;
+
+    &:hover {
+        cursor: pointer;
     }
 }

@@ -9,7 +9,7 @@ const more = (props) => {
             <p className="more-title"><span className="more-title-text">all articles</span></p>
             <div className="more-section" style={{position: 'relative'}}>
                 <News allArticles={props.allArticles} buttonClick={props.buttonClick}/>
-                <Trending trendingList={props.trendingList} categoryChange={props.categoryChange}/>
+                <Trending topArticles={props.topArticles} categoryChange={props.categoryChange}/>
             </div>
         </div>
     )

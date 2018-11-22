@@ -1,6 +1,7 @@
 import React from 'react';
 import Hidden from './hidden/hidden';
 import NavBar from './navBar/navBar';
+import {Link} from 'react-router-dom';
 
 const header = (props) => {
     return (
@@ -8,14 +9,14 @@ const header = (props) => {
             <div className="header__section">
                 <div className="header__section-middle">
                     <ion-icon onClick={props.buttonOpenNav} id="nav-icon" name="menu"></ion-icon>
-                    <a href="home" className="header__section-middle-logo">TopNews</a>
+                    <p className="header__section-middle-logo"><Link to="/" id="header-logo">TopNews</Link></p>
                     <ul className="header__section-middle-list">
-                        <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object">Business</li>
-                        <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object">Entertainment</li>
-                        <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object">Health</li>
-                        <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object">Science</li>
-                        <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object">Sports</li>
-                        <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object">Technology</li> 
+                        <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object"><Link id="header-link" to='/category/business'>Business</Link></li>
+                        <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object"><Link id="header-link" to='/category/entertainment'>Entertainment</Link></li>
+                        <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object"><Link id="header-link" to='/category/health'>Health</Link></li>
+                        <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object"><Link id="header-link" to='/category/science'>Science</Link></li>
+                        <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object"><Link id="header-link" to='/category/sports'>Sports</Link></li>
+                        <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object"><Link id="header-link" to='/category/technology'>Technology</Link></li> 
                     </ul>
                     <ion-icon id="search-icon" name="search"></ion-icon>
                 </div>

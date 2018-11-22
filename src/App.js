@@ -7,7 +7,7 @@ import Footer from './components/footer/footer';
 
 String.prototype.indexOfEnd = function(string) {
   var index = this.indexOf(string);
-  return index == -1 ? -1 : index + string.length;
+  return index === -1 ? -1 : index + string.length;
 }
 
 class App extends Component {
@@ -32,14 +32,15 @@ class App extends Component {
   componentDidMount() {
     //API KEY 62abe08b0bac4d048638127c17e09e69
   
-    // //Top Headlines
-    fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=62abe08b0bac4d048638127c17e09e69')
+    //Top Headlines from top sources
+    fetch('https://newsapi.org/v2/top-headlines?sources=the-washington-post,the-new-york-times,fox-news,nbc-news,cnn-es&apiKey=62abe08b0bac4d048638127c17e09e69')
       .then(response => response.json())
       .then(myJson => this.setState({topArticles: myJson.articles.map(value => value)}))
+      .then(myJson => console.log(myJson))
       .catch(err => console.log('ERROR: ' + err));
 
     //Top sources
-    fetch('https://newsapi.org/v2/everything?language=en&domains=wsj.com,nytimes.com,foxnews.com,nbcnews.com,news.nationalgeographic.comnfl.com/news,us.cnn.com&apiKey=62abe08b0bac4d048638127c17e09e69')
+    fetch('https://newsapi.org/v2/everything?language=en&domains=wsj.com,nytimes.com,foxnews.com,nbcnews.com,us.cnn.com&apiKey=62abe08b0bac4d048638127c17e09e69')
       .then(response => response.json())
       .then(myJson => this.setState({allArticles: myJson.articles.map(value => value)}))
       .catch(err => console.log('ERROR: ' + err));
@@ -79,14 +80,6 @@ class App extends Component {
       .then(response => response.json())
       .then(myJson => this.setState({technology: myJson.articles.map(value => value)}))
       .catch(err => console.log('ERROR: ' + err));
-    
-    fetch('https://newsapi.org/v2/everything?domains=wsj.com,nytimes.com&apiKey=62abe08b0bac4d048638127c17e09e69')
-      .then(response => response.json())
-      // .then(myJson => this.setState({technology: myJson.articles.map(value => value)}))
-      .then(myJson => console.log(myJson))
-      .catch(err => console.log('ERROR: ' + err));
-
-      
   }
 
   //News button clicking for getting more news from popular wesites
@@ -98,14 +91,14 @@ class App extends Component {
     this.setState({pageNumber: this.state.pageNumber+1})
   }
 
-  //For opening the right category on button click in Trendings
-  categoryChange = (e) => {
-    const a = e.currentTarget.textContent;
-    fetch(`https://newsapi.org/v2/everything?q=${a}&language=en&apiKey=62abe08b0bac4d048638127c17e09e69`)
-      .then(response => response.json())
-      .then(myJson => this.setState({trendingList: myJson.articles.map(value => value)}))
-      .catch(err => console.log('ERROR: ' + err));
-  }
+  // //For opening the right category on button click in Trendings
+  // categoryChange = (e) => {
+  //   const a = e.currentTarget.textContent;
+  //   fetch(`https://newsapi.org/v2/everything?q=${a}&language=en&apiKey=62abe08b0bac4d048638127c17e09e69`)
+  //     .then(response => response.json())
+  //     .then(myJson => this.setState({trendingList: myJson.articles.map(value => value)}))
+  //     .catch(err => console.log('ERROR: ' + err));
+  // }
 
   //Opening header navigation options when hover
   mouseEnter = (e) =>{
@@ -217,14 +210,12 @@ class App extends Component {
         />
 
         <More 
+          topArticles={this.state.topArticles}
           categoryChange={(e)=>this.categoryChange(e)}
-          trendingList={this.state.trendingList}
+          // trendingList={this.state.trendingList}
           allArticles={this.state.allArticles} 
           buttonClick={() => this.buttonClick()}
         />
-
-        <Footer />
-
       </div>
     );
   }

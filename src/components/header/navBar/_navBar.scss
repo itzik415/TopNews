@@ -48,7 +48,6 @@
 
                 &:hover {
                     background-position-x: 200px;
-                    color: white;
                 }
             }
         }
@@ -66,4 +65,13 @@
         cursor: pointer;
         color: $base-red;
     }
+}
+
+#header-navBar {
+    color: grey;
+    text-decoration: none;
+}
+
+.navBar__section-content-list-object:hover > #header-navBar {
+    color: white;
 }
