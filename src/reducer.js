@@ -41,31 +41,36 @@ export const rootReducer = (state = initialState, action) => {
         case 'RECIVE_ENTERTAINMENT_ARTICLES':
             return {
                 ...state, 
-                entertainment: action.payload 
+                entertainment: action.payload,
+                // trendingList: action.payload
             }
         
         case 'RECIVE_HEALTH_ARTICLES':
             return {
                 ...state, 
-                health: action.payload 
+                health: action.payload,
+                // trendingList: action.payload
             }
         
         case 'RECIVE_SCIENCE_ARTICLES':
             return {
                 ...state, 
-                science: action.payload 
+                science: action.payload,
+                // trendingList: action.payload
             }
 
         case 'RECIVE_SPORT_ARTICLES':
             return {
                 ...state, 
-                sport: action.payload 
+                sport: action.payload,
+                // trendingList: action.payload
             }
 
         case 'RECIVE_TECHNOLOGY_ARTICLES':
             return {
                 ...state, 
-                technology: action.payload 
+                technology: action.payload,
+                // trendingList: action.payload
             }
 
         case 'RECIVE_MORE_ARTICLES':
@@ -78,7 +83,7 @@ export const rootReducer = (state = initialState, action) => {
         case 'RECIVE_HEADER_CATEGORY':
             return {
                 ...state, 
-                trendingList: action.payload
+                trendingList: [...initialState.trendingList, ...action.payload]
             }
 
         case 'ERROR':

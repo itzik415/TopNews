@@ -31,7 +31,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    //API KEY 62abe08b0bac4d048638127c17e09e69
   
     //Top Headlines from top sources
     this.props.dispatch(getTopHeadlines())

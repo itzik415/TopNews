@@ -2,6 +2,8 @@ import { initialState } from './reducer';
 // import { store } from './store';
 // import { connect } from 'react-redux';
 
+//API KEY 62abe08b0bac4d048638127c17e09e69
+
 //Top headlines
 export function getTopHeadlines() {
     return function(dispatch) {
@@ -100,53 +102,18 @@ export function headerHover(e) {
     return function(dispatch) {
         document.querySelector('.hidden__section').style.display = 'flex';
         const a = e.currentTarget.textContent;
-        console.log(a)
         fetch(`https://newsapi.org/v2/everything?q=${a}&language=en&apiKey=62abe08b0bac4d048638127c17e09e69`)
             .then(response => response.json())
             .then(myJson => dispatch({type: 'RECIVE_HEADER_CATEGORY', payload: myJson.articles.map(value => value)}))
             .catch(err => dispatch({type: 'ERROR', payload: err}))
+        
     }
+        // const aLower = a.toLowerCase();
+        // if(aLower in initialState) {
+        //     return {
+        //         type: `RECIVE_${a.toUpperCase()}_CATEGORY`,
+        //         payload: `${initialState}.${aLower}`
+        //     }
+
+        // }
 }
-
-
-// buttonClick = () => {
-//     fetch(`https://newsapi.org/v2/everything?language=en&domains=wsj.com,nytimes.com,foxnews.com,nbcnews.com,news.nationalgeographic.comnfl.com/news,techcrunch.com,us.cnn.com&apiKey=62abe08b0bac4d048638127c17e09e69&page=${this.state.pageNumber}`)
-//       .then(response => response.json())
-    //   .then(myJson =>  this.setState({allArticles: [...this.state.allArticles, ...myJson.articles.map(value => value)]}))
-    //   .catch(err => console.log('ERROR: ' + err));
-//     this.setState({pageNumber: this.state.pageNumber+1})
-//   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// store.dispatch((dispatch) => {
-//     dispatch({type: 'FETCH_TOP_HEADLINES'})
-//     fetch('https://newsapi.org/v2/top-headlines?sources=the-washington-post,the-new-york-times,fox-news,nbc-news,cnn-es&apiKey=62abe08b0bac4d048638127c17e09e69')
-//         .then(response => response.json())
-//         .then(myJson => dispatch({type: 'RECIVE_TOP_HEADLINES', payload: myJson.articles.map(value => value)}))
-//         .catch(err => dispatch({type: 'ERROR_TOP_HEADLINES', payload: err}));
-// })
-
