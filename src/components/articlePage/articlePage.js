@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import momentTimezone from 'moment-timezone';
+import 'moment-timezone';
 
 const articlePage = (props) => {
     return (

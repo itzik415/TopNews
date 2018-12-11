@@ -36,12 +36,7 @@ html {
       align-items: center; }
       .header .header__section-middle-logo {
         padding: 10px 15px;
-        font-size: 3rem;
-        font-weight: bolder;
-        font-family: Georgia;
-        flex: 1;
-        text-decoration: none;
-        color: black; }
+        flex: 1; }
       .header .header__section-middle-list {
         list-style: none;
         display: flex; }
@@ -49,10 +44,6 @@ html {
           margin: 0 2.5rem;
           font-weight: 100;
           padding: 15px 0; }
-          .header .header__section-middle-list-object:hover {
-            cursor: pointer;
-            color: #d40000;
-            transition: 0.3s; }
 
 #nav-icon {
   font-size: 3rem; }
@@ -66,6 +57,24 @@ html {
   #search-icon:hover {
     cursor: pointer;
     color: #d40000;
+    transition: 0.3s; }
+
+#header-link {
+  color: grey;
+  text-decoration: none; }
+  #header-link:hover {
+    cursor: pointer;
+    color: #d40000;
+    transition: 0.3s; }
+
+#header-logo {
+  color: black;
+  text-decoration: none;
+  font-size: 3rem;
+  font-weight: bolder;
+  font-family: Georgia; }
+  #header-logo:hover {
+    cursor: pointer;
     transition: 0.3s; }
 
 .hidden__section {
@@ -86,7 +95,6 @@ html {
       display: flex;
       flex-direction: column;
       align-content: center;
-      margin: 5px 5px 0 5px;
       overflow: hidden; }
       .hidden__section-holder-container:hover {
         cursor: pointer; }
@@ -101,13 +109,18 @@ html {
         height: 70px;
         font-size: 15px;
         padding: 15px 15px 0 0;
-        color: grey; }
+        color: black;
+        transition: .3s; }
 
 .hidden__section-holder-container:hover > .hidden__section-holder-container-img {
-  transform: scale(1.1); }
+  box-shadow: 10px 10px 10px #444444;
+  transform: translate(-7px, -7px); }
 
 .hidden__section-holder-container:hover > .hidden__section-holder-container-title {
   color: #d40000; }
+
+#link {
+  text-decoration: none; }
 
 .navBar__section {
   width: 350px;
@@ -148,8 +161,7 @@ html {
       background-size: 220%;
       transition: .4s; }
       .navBar__section-content-list-object:hover {
-        background-position-x: 200px;
-        color: white; }
+        background-position-x: 200px; }
 
 #closing-icon {
   font-size: 40px;
@@ -159,6 +171,13 @@ html {
   #closing-icon:hover {
     cursor: pointer;
     color: #d40000; }
+
+#header-navBar {
+  color: grey;
+  text-decoration: none; }
+
+.navBar__section-content-list-object:hover > #header-navBar {
+  color: white; }
 
 .slider__section {
   height: 480px;
@@ -181,10 +200,14 @@ html {
     display: flex;
     margin: 0;
     overflow: hidden; }
+    .slider__section-middle:hover {
+      cursor: pointer; }
     .slider__section-middle-0, .slider__section-middle-1, .slider__section-middle-2, .slider__section-middle-3, .slider__section-middle-4 {
       display: flex;
       transition: 0.3s;
       margin-top: 80px; }
+      .slider__section-middle-0:hover > .slider__section-middle-0-article, .slider__section-middle-1:hover > .slider__section-middle-0-article, .slider__section-middle-2:hover > .slider__section-middle-0-article, .slider__section-middle-3:hover > .slider__section-middle-0-article, .slider__section-middle-4:hover > .slider__section-middle-0-article, .slider__section-middle-0:hover > .slider__section-middle-1-article, .slider__section-middle-1:hover > .slider__section-middle-1-article, .slider__section-middle-2:hover > .slider__section-middle-1-article, .slider__section-middle-3:hover > .slider__section-middle-1-article, .slider__section-middle-4:hover > .slider__section-middle-1-article, .slider__section-middle-0:hover > .slider__section-middle-2-article, .slider__section-middle-1:hover > .slider__section-middle-2-article, .slider__section-middle-2:hover > .slider__section-middle-2-article, .slider__section-middle-3:hover > .slider__section-middle-2-article, .slider__section-middle-4:hover > .slider__section-middle-2-article, .slider__section-middle-0:hover > .slider__section-middle-3-article, .slider__section-middle-1:hover > .slider__section-middle-3-article, .slider__section-middle-2:hover > .slider__section-middle-3-article, .slider__section-middle-3:hover > .slider__section-middle-3-article, .slider__section-middle-4:hover > .slider__section-middle-3-article, .slider__section-middle-0:hover > .slider__section-middle-4-article, .slider__section-middle-1:hover > .slider__section-middle-4-article, .slider__section-middle-2:hover > .slider__section-middle-4-article, .slider__section-middle-3:hover > .slider__section-middle-4-article, .slider__section-middle-4:hover > .slider__section-middle-4-article {
+        opacity: 0.8; }
       .slider__section-middle-0-image, .slider__section-middle-1-image, .slider__section-middle-2-image, .slider__section-middle-3-image, .slider__section-middle-4-image {
         width: 730px;
         height: 430px;
@@ -192,7 +215,10 @@ html {
         object-fit: cover; }
       .slider__section-middle-0-article, .slider__section-middle-1-article, .slider__section-middle-2-article, .slider__section-middle-3-article, .slider__section-middle-4-article {
         width: 450px;
-        margin-left: 20px; }
+        margin-left: 20px;
+        transition: 0.3s; }
+        .slider__section-middle-0-article:hover, .slider__section-middle-1-article:hover, .slider__section-middle-2-article:hover, .slider__section-middle-3-article:hover, .slider__section-middle-4-article:hover {
+          opacity: 0.8; }
         .slider__section-middle-0-article-companyName, .slider__section-middle-1-article-companyName, .slider__section-middle-2-article-companyName, .slider__section-middle-3-article-companyName, .slider__section-middle-4-article-companyName {
           font-size: 13px;
           font-weight: bold;
@@ -225,7 +251,8 @@ html {
   font-size: 60px; }
   #arrowLeft:hover,
   #arrowRight:hover {
-    cursor: pointer; }
+    cursor: pointer;
+    color: grey; }
 
 .gallery {
   grid-column: full-start / full-end;
@@ -404,7 +431,14 @@ html {
     width: 100%;
     height: 220px;
     display: flex;
-    margin: 20px 0; }
+    margin: 20px 0;
+    transition: .3s;
+    overflow: hidden; }
+    .news__section-container:hover {
+      cursor: pointer; }
+    .news__section-container:hover > .news__section-container-right {
+      opacity: 0.6;
+      transition: .3s; }
     .news__section-container-left {
       min-width: 40%;
       max-width: 40%;
@@ -419,7 +453,8 @@ html {
         font-size: 30px;
         font-family: 'Oswald';
         line-height: 1;
-        margin: 10px 0; }
+        margin: 10px 0;
+        color: black; }
       .news__section-container-right-description {
         font-size: 18px;
         color: grey; }
@@ -480,16 +515,21 @@ html {
       padding: 0 10px; }
       .trending__section-container-right-name {
         font-size: 12px;
-        padding-top: 5px; }
+        padding-top: 5px;
+        color: grey; }
       .trending__section-container-right-title {
         font-size: 15px;
         font-family: sans-serif;
-        font-weight: bold; }
+        font-weight: bold;
+        color: black; }
 
 #red-background {
   background-color: #d40000;
   padding: 5px 10px;
   color: white; }
+
+.trending__section-container:hover > .trending__section-container-right {
+  opacity: 0.6; }
 
 .footer__section {
   width: 100%; }
@@ -499,15 +539,7 @@ html {
     justify-content: center;
     align-content: center; }
     .footer__section-up-logo {
-      padding: 60px;
-      font-size: 50px;
-      font-weight: bolder;
-      font-family: Georgia;
-      color: white;
-      text-decoration: none;
-      transition: .4s; }
-      .footer__section-up-logo:hover {
-        color: #d40000; }
+      padding: 60px; }
   .footer__section-down {
     background-color: black;
     display: flex;
@@ -523,3 +555,19 @@ html {
       padding: 5px;
       font-size: 11px;
       color: white; }
+
+#header-footer {
+  font-size: 5rem;
+  font-weight: bolder;
+  font-family: Georgia;
+  color: white;
+  text-decoration: none;
+  transition: .4s; }
+  #header-footer:hover {
+    cursor: pointer; }
+
+.categoryPage {
+  display: flex;
+  flex-direction: column; }
+  .categoryPage-bottom {
+    display: flex; }

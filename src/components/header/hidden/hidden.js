@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const hidden = (props) => {
     return (
@@ -24,4 +25,10 @@ const hidden = (props) => {
     )
 }
 
-export default hidden;
+const mapStateToProps = (state) => {
+    return {
+        trendingList: state.trendingList
+    }
+}
+  
+export default connect(mapStateToProps)(hidden);

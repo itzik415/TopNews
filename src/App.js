@@ -3,7 +3,17 @@ import Header from './components/header/header';
 import Slider from './components/slider/slider';
 import Latest from './components/latest/latest';
 import More from './components/more/more';
-import Footer from './components/footer/footer';
+import { connect } from 'react-redux';
+import {getTopHeadlines, 
+        getTopSources,
+        getBusinessArticles,
+        getEntertainmentArticles,
+        getHealthArticles,
+        getScienceArticles,
+        getSportsArticles,
+        getTechnologyArticles
+       } from './actions';
+
 
 String.prototype.indexOfEnd = function(string) {
   var index = this.indexOf(string);
@@ -14,15 +24,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      business: [],
-      entertainment: [],
-      health: [],
-      science: [],
-      sports: [],
-      technology: [],
-      topArticles: [],
-      allArticles: [],
-      trendingList: [],
       pageNumber: 2,
       articleNumber: 0,
       translate: 0
@@ -33,65 +34,32 @@ class App extends Component {
     //API KEY 62abe08b0bac4d048638127c17e09e69
   
     //Top Headlines from top sources
-    fetch('https://newsapi.org/v2/top-headlines?sources=the-washington-post,the-new-york-times,fox-news,nbc-news,cnn-es&apiKey=62abe08b0bac4d048638127c17e09e69')
-      .then(response => response.json())
-      .then(myJson => this.setState({topArticles: myJson.articles.map(value => value)}))
-      .then(myJson => console.log(myJson))
-      .catch(err => console.log('ERROR: ' + err));
-
+    this.props.dispatch(getTopHeadlines())
+    
     //Top sources
-    fetch('https://newsapi.org/v2/everything?language=en&domains=wsj.com,nytimes.com,foxnews.com,nbcnews.com,us.cnn.com&apiKey=62abe08b0bac4d048638127c17e09e69')
-      .then(response => response.json())
-      .then(myJson => this.setState({allArticles: myJson.articles.map(value => value)}))
-      .catch(err => console.log('ERROR: ' + err));
-
+    this.props.dispatch(getTopSources())
+    
     //All Business
-    fetch('https://newsapi.org/v2/everything?q=business&language=en&apiKey=62abe08b0bac4d048638127c17e09e69')
-      .then(response => response.json())
-      .then(myJson => this.setState({business: myJson.articles.map(value => value), trendingList: myJson.articles.map(value => value)}))
-      .catch(err => console.log('ERROR: ' + err));
+    this.props.dispatch(getBusinessArticles())
 
-    //All Entertainment
-    fetch('https://newsapi.org/v2/everything?q=entertainment&language=en&apiKey=62abe08b0bac4d048638127c17e09e69')
-      .then(response => response.json())
-      .then(myJson => this.setState({entertainment: myJson.articles.map(value => value)}))
-      .catch(err => console.log('ERROR: ' + err));
+    //All Entertainment    
+    this.props.dispatch(getEntertainmentArticles())
 
     //All Health
-    fetch('https://newsapi.org/v2/everything?q=health&language=en&apiKey=62abe08b0bac4d048638127c17e09e69')
-      .then(response => response.json())
-      .then(myJson => this.setState({health: myJson.articles.map(value => value)}))
-      .catch(err => console.log('ERROR: ' + err));
+    this.props.dispatch(getHealthArticles())
 
     //All science
-    fetch('https://newsapi.org/v2/everything?q=science&language=en&apiKey=62abe08b0bac4d048638127c17e09e69')
-      .then(response => response.json())
-      .then(myJson => this.setState({science: myJson.articles.map(value => value)}))
-      .catch(err => console.log('ERROR: ' + err));
+    this.props.dispatch(getScienceArticles())
 
     //All Sports
-    fetch('https://newsapi.org/v2/everything?q=sport&language=en&apiKey=62abe08b0bac4d048638127c17e09e69')
-      .then(response => response.json())
-      .then(myJson => this.setState({sports: myJson.articles.map(value => value)}))
-      .catch(err => console.log('ERROR: ' + err));
+    this.props.dispatch(getSportsArticles())
 
     //All Technology
-    fetch('https://newsapi.org/v2/everything?q=tech&language=en&apiKey=62abe08b0bac4d048638127c17e09e69')
-      .then(response => response.json())
-      .then(myJson => this.setState({technology: myJson.articles.map(value => value)}))
-      .catch(err => console.log('ERROR: ' + err));
-  }
-
-  //News button clicking for getting more news from popular wesites
-  buttonClick = () => {
-    fetch(`https://newsapi.org/v2/everything?language=en&domains=wsj.com,nytimes.com,foxnews.com,nbcnews.com,news.nationalgeographic.comnfl.com/news,techcrunch.com,us.cnn.com&apiKey=62abe08b0bac4d048638127c17e09e69&page=${this.state.pageNumber}`)
-      .then(response => response.json())
-      .then(myJson =>  this.setState({allArticles: [...this.state.allArticles, ...myJson.articles.map(value => value)]}))
-      .catch(err => console.log('ERROR: ' + err));
-    this.setState({pageNumber: this.state.pageNumber+1})
+    this.props.dispatch(getTechnologyArticles())
   }
 
   // //For opening the right category on button click in Trendings
+  // //Don't use it anymore after got rid of the categories
   // categoryChange = (e) => {
   //   const a = e.currentTarget.textContent;
   //   fetch(`https://newsapi.org/v2/everything?q=${a}&language=en&apiKey=62abe08b0bac4d048638127c17e09e69`)
@@ -175,15 +143,8 @@ class App extends Component {
     console.log(chosenArticle)
   }
 
-
   render() {
-    // console.log(this.state.entertainment);
-    // console.log(this.state.general);
-    // console.log(this.state.business);
-    // if(this.state.allArticles.length > 0) {
-    //   console.log(this.state.topArticles)
-    // }
-    
+    // console.log('APP', this.props.allArticles)
     return (
       <div className="App" id="home">
         <div className="blackBackground" onClick={() =>this.buttonCloseNav()}></div>
@@ -193,32 +154,46 @@ class App extends Component {
           buttonOpenNav={() => this.buttonOpenNav()}
           mouseLeave={() => this.mouseLeave()}
           mouseEnter={(e) => this.mouseEnter(e)}
-          buttonClick={() => this.buttonClick()}
-          trendingList={this.state.trendingList}
         />
 
         <Slider 
           articleHandle={(article) => {this.articleHandle(article)}}
           movingArticlesLeft={() => this.movingArticlesLeft()}
           movingArticlesRight={() => this.movingArticlesRight()}
-          topArticles={this.state.topArticles}
         />
 
         <Latest 
           articleHandle={(article) => {this.articleHandle(article)}}
-          topArticles={this.state.topArticles}
         />
 
         <More 
-          topArticles={this.state.topArticles}
           categoryChange={(e)=>this.categoryChange(e)}
-          // trendingList={this.state.trendingList}
-          allArticles={this.state.allArticles} 
-          buttonClick={() => this.buttonClick()}
         />
       </div>
     );
   }
 }
 
-export default App;
+
+const mapStateToProps = (state) => {
+  return {
+    topArticles: state.topArticles,
+    allArticles: state.allArticles
+  }
+}
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     users: () => dispatch({type: 'RECIVE_R', payload: bla()})
+//   }
+// }
+
+// store.dispatch((dispatch) => {
+//   dispatch({type: 'FETCH_TOP_HEADLINES'})
+//   fetch('https://newsapi.org/v2/top-headlines?sources=the-washington-post,the-new-york-times,fox-news,nbc-news,cnn-es&apiKey=62abe08b0bac4d048638127c17e09e69')
+//       .then(response => response.json())
+//       .then(myJson => dispatch({type: 'RECIVE_TOP_HEADLINES', payload: myJson.articles.map(value => value)}))
+//       .catch(err => dispatch({type: 'ERROR_TOP_HEADLINES', payload: err}));
+// })
+
+export default connect(mapStateToProps)(App);

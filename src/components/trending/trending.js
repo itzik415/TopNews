@@ -1,7 +1,8 @@
 import React from 'react';
 import moment from 'moment';
-import momentTimezone from 'moment-timezone';
+import 'moment-timezone';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const trending = (props) => {
     return (
@@ -29,4 +30,10 @@ const trending = (props) => {
     )
 }
 
-export default trending;
+const mapStateToProps = (state) => {
+    return {
+      topArticles: state.topArticles
+    }
+  }
+  
+export default connect(mapStateToProps)(trending);

@@ -1,9 +1,12 @@
 import React from 'react';
 import moment from 'moment';
-import momentTimezone from 'moment-timezone';
+import 'moment-timezone';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { gettingMoreArticles }  from '../../actions';
 
 const news = (props) => {
+    // console.log('NEWSSSS', props.allArticles)
     return (
         <div className="news__section">
              {
@@ -27,4 +30,16 @@ const news = (props) => {
     )
 }
 
-export default news;
+const mapStateToProps = (state) => {
+    return {
+      allArticles: state.allArticles
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        buttonClick: () => dispatch(gettingMoreArticles()) 
+    }
+}
+  
+export default connect(mapStateToProps, mapDispatchToProps)(news);
