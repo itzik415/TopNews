@@ -95,6 +95,20 @@ export function gettingMoreArticles() {
     }
 }
 
+//Opening header navigation options when hover
+export function headerHover(e) {
+    return function(dispatch) {
+        document.querySelector('.hidden__section').style.display = 'flex';
+        const a = e.currentTarget.textContent;
+        console.log(a)
+        fetch(`https://newsapi.org/v2/everything?q=${a}&language=en&apiKey=62abe08b0bac4d048638127c17e09e69`)
+            .then(response => response.json())
+            .then(myJson => dispatch({type: 'RECIVE_HEADER_CATEGORY', payload: myJson.articles.map(value => value)}))
+            .catch(err => dispatch({type: 'ERROR', payload: err}))
+    }
+}
+
+
 // buttonClick = () => {
 //     fetch(`https://newsapi.org/v2/everything?language=en&domains=wsj.com,nytimes.com,foxnews.com,nbcnews.com,news.nationalgeographic.comnfl.com/news,techcrunch.com,us.cnn.com&apiKey=62abe08b0bac4d048638127c17e09e69&page=${this.state.pageNumber}`)
 //       .then(response => response.json())

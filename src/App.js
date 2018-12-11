@@ -68,16 +68,6 @@ class App extends Component {
   //     .catch(err => console.log('ERROR: ' + err));
   // }
 
-  //Opening header navigation options when hover
-  mouseEnter = (e) =>{
-    document.querySelector('.hidden__section').style.display = 'flex';
-    const a = e.currentTarget.textContent;
-    fetch(`https://newsapi.org/v2/everything?q=${a}&language=en&apiKey=62abe08b0bac4d048638127c17e09e69`)
-      .then(response => response.json())
-      .then(myJson => this.setState({trendingList: myJson.articles.map(value => value)}))
-      .catch(err => console.log('ERROR: ' + err));
-  }
-
   //Closing header navigation options when hover
   mouseLeave = () => {
     document.querySelector('.hidden__section').style.display = 'none';
@@ -153,7 +143,6 @@ class App extends Component {
           buttonCloseNav={() => this.buttonCloseNav()}
           buttonOpenNav={() => this.buttonOpenNav()}
           mouseLeave={() => this.mouseLeave()}
-          mouseEnter={(e) => this.mouseEnter(e)}
         />
 
         <Slider 

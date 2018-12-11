@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { gettingMoreArticles }  from '../../actions';
 
 const news = (props) => {
-    // console.log('NEWSSSS', props.allArticles)
     return (
         <div className="news__section">
              {

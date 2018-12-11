@@ -75,6 +75,12 @@ export const rootReducer = (state = initialState, action) => {
                 pageNumber: action.payload2
             }
 
+        case 'RECIVE_HEADER_CATEGORY':
+            return {
+                ...state, 
+                trendingList: action.payload
+            }
+
         case 'ERROR':
             return {
                 ...state, 

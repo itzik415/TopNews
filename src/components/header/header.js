@@ -2,6 +2,8 @@ import React from 'react';
 import Hidden from './hidden/hidden';
 import NavBar from './navBar/navBar';
 import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { headerHover }  from '../../actions';
 
 const header = (props) => {
     return (
@@ -27,4 +29,15 @@ const header = (props) => {
     )
 }
 
-export default header;
+// const mapStateToProps = state => {
+
+// }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        mouseEnter: (e) => dispatch(headerHover(e)) 
+    }
+}
+    
+
+export default connect(null, mapDispatchToProps)(header);
