@@ -1,3 +1,5 @@
+// import { store } from './store';
+
 
 export const initialState = {
     counter: 0,
@@ -15,6 +17,16 @@ export const initialState = {
     translate: 0,
     error: null,
 }
+
+// export function articleHandle(article) {
+//     return function(dispatch) {
+//         var name = article.currentTarget.textContent;
+//         const chosenArticle = initialState.topArticles.filter((item) => {
+//             return name.slice(name.search(item.title), name.indexOfEnd(item.title)) === item.title;
+//         })
+//         console.log(chosenArticle)
+//     }
+// }
 
 
 export const rootReducer = (state = initialState, action) => {
@@ -84,6 +96,34 @@ export const rootReducer = (state = initialState, action) => {
             return {
                 ...state, 
                 trendingList: [...initialState.trendingList, ...action.payload]
+            }
+
+        case 'MOVING_SLIDER_RIGHT':
+            return {
+                ...state, 
+                translate: state.translate - 1200,
+                articleNumber: state.articleNumber + 1
+            }
+
+        case 'MOVING_SLIDER_TO_ZERO':
+            return {
+                ...state, 
+                translate: 0,
+                articleNumber: 0
+            }
+        
+        case 'MOVING_SLIDER_LEFT':
+            return {
+                ...state, 
+                translate: state.translate + 1200,
+                articleNumber: state.articleNumber - 1
+            }
+
+        case 'MOVING_SLIDER_BACK':
+            return {
+                ...state, 
+                translate: -4800,
+                articleNumber: 4
             }
 
         case 'ERROR':

@@ -23,7 +23,7 @@ const header = (props) => {
                     <ion-icon id="search-icon" name="search"></ion-icon>
                 </div>
             </div>
-            <Hidden mouseLeave={props.mouseLeave} trendingList={props.trendingList}/>
+            <Hidden mouseLeave={props.mouseLeave} />
             <NavBar buttonCloseNav={props.buttonCloseNav}/>
         </div>
     )

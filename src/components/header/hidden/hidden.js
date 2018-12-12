@@ -10,7 +10,7 @@ const hidden = (props) => {
                     props.trendingList.map((article, index) => {
                         return (
                             index < 6?
-                            <Link id="link" to={`/article/${article.title}`}>
+                            <Link id="link" to={`/article/${article.title}`} key={index}>
                                 <div className="hidden__section-holder-container" key={index}>
                                     <img className="hidden__section-holder-container-img" src={`${article.urlToImage}`} alt='article'/>
                                     <p className="hidden__section-holder-container-title">{article.title}</p>

@@ -13,7 +13,7 @@ const trending = (props) => {
                 props.topArticles.map((article, index) => {
                     return (
                         index >= 8 && index < 16?
-                        <Link id='link' to={`/article/${article.title}`}>
+                        <Link id='link' to={`/article/${article.title}`} key={index}>
                             <div className="trending__section-container" key={index}>
                                 <img className="trending__section-container-left" src={`${article.urlToImage}`} alt='article'/>
                                 <div className="trending__section-container-right">

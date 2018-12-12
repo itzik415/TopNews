@@ -3,20 +3,21 @@ import moment from 'moment';
 import 'moment-timezone';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { movingArticlesRight, movingArticlesLeft } from '../../actions';
 
 
 const slider = (props) => {
     return (
         <div className="slider__section">
             <div className="slider__section-arrowDivLeft">
-                <ion-icon onClick={props.movingArticlesLeft} id="arrowLeft" name="ios-arrow-back"></ion-icon>
+                <ion-icon onClick={props.moveSliderLeft} id="arrowLeft" name="ios-arrow-back"></ion-icon>
             </div>
             <div className="slider__section-middle">
                 {
                     props.topArticles.map((article, index) => {
                         return (
                             index < 5?
-                            <Link id='link' to={`/article/${article.title}`}>
+                            <Link id='link' to={`/article/${article.title}`} key={index}>
                                 <div className={`slider__section-middle-${index}`} onClick={props.articleHandle} key={index}>
                                     <img className={`slider__section-middle-${index}-image`} src={`${article.urlToImage === null ? require('../../images/topNewsLogo.png') :article.urlToImage}`} alt='article'/>
                                     <div className={`slider__section-middle-${index}-article`}>
@@ -32,7 +33,7 @@ const slider = (props) => {
                 }
             </div>
             <div className="slider__section-arrowDivRight">
-                <ion-icon onClick={props.movingArticlesRight} id="arrowRight" name="ios-arrow-forward"></ion-icon>
+                <ion-icon onClick={props.moveSliderRight} id="arrowRight" name="ios-arrow-forward"></ion-icon>
             </div>
         </div>
     )
@@ -43,5 +44,12 @@ const mapStateToProps = (state) => {
         topArticles: state.topArticles
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        moveSliderRight: () => dispatch(movingArticlesRight()),
+        moveSliderLeft: () => dispatch(movingArticlesLeft())
+    }
+}   
   
-export default connect(mapStateToProps)(slider);
+export default connect(mapStateToProps, mapDispatchToProps)(slider);

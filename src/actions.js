@@ -1,5 +1,5 @@
 import { initialState } from './reducer';
-// import { store } from './store';
+import { store } from './store';
 // import { connect } from 'react-redux';
 
 //API KEY 62abe08b0bac4d048638127c17e09e69
@@ -117,3 +117,57 @@ export function headerHover(e) {
 
         // }
 }
+
+export function movingArticlesRight() {
+    if(store.getState().articleNumber < 4) {
+        for(let i = 0; i < 5; i++) {
+            document.querySelector(`.slider__section-middle-${i}`).style.transform = `translateX(${store.getState().translate-1200}px)`; 
+        }
+        return {
+            type: 'MOVING_SLIDER_RIGHT'
+        }
+    }else {
+        for(let i = 0; i < 5; i++) {
+            document.querySelector(`.slider__section-middle-${i}`).style.transform = `translateX(0)`;
+        }
+        return {
+            type: 'MOVING_SLIDER_TO_ZERO',
+        }
+    }
+}
+
+export function movingArticlesLeft() {
+    if(store.getState().articleNumber > 0) {
+        for(let i = 0; i < 5; i++) {
+            document.querySelector(`.slider__section-middle-${i}`).style.transform = `translateX(${store.getState().translate+1200}px)`; 
+        }
+        return {
+            type: 'MOVING_SLIDER_LEFT'
+        }
+    }else {
+        for(let i = 0; i < 5; i++) {
+            document.querySelector(`.slider__section-middle-${i}`).style.transform = `translateX(-4800px)`;
+        }
+        return {
+            type: 'MOVING_SLIDER_BACK',
+        }
+    }
+}
+
+
+// movingArticlesLeft = () => {
+//     if(this.state.articleNumber > 0) {
+//       for(let i = 0; i < 5; i++) {
+//         document.querySelector(`.slider__section-middle-${i}`).style.transform = `translateX(${this.state.translate + 1200}px)`;   
+//       }
+//       this.setState({translate: this.state.translate + 1200});
+//       this.setState({articleNumber: this.state.articleNumber - 1});
+      
+//     }else {
+//       for(let i = 0; i < 5; i++) {
+//         document.querySelector(`.slider__section-middle-${i}`).style.transform = `translateX(-4800px)`;  
+//       }
+//       this.setState({articleNumber: 4});
+//       this.setState({translate: -4800});
+//     }
+//   }
