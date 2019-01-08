@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Header from './components/header/header';
 import Slider from './components/slider/slider';
 import Latest from './components/latest/latest';
 import More from './components/more/more';
 import { connect } from 'react-redux';
+import { store } from './store';
 import {getTopHeadlines, 
         getTopSources,
         getBusinessArticles,
@@ -21,7 +21,9 @@ String.prototype.indexOfEnd = function(string) {
 }
 
 class App extends Component {
-
+  state = {
+    name: 'itzik'
+  }
   componentDidMount() {
   
     //Top Headlines from top sources
@@ -49,11 +51,6 @@ class App extends Component {
     this.props.dispatch(getTechnologyArticles())
   }
 
-  //Closing header navigation options when hover
-  mouseLeave = () => {
-    document.querySelector('.hidden__section').style.display = 'none';
-  }
-
   //Button for opening navigation bar
   buttonCloseNav = () => {
     document.querySelector('.navBar__section').style.transform = 'translate(-350px)';
@@ -61,43 +58,22 @@ class App extends Component {
     document.querySelector('.blackBackground').style.display = 'none';
   }
 
-  //Button for closing navigation bar
-  buttonOpenNav = () => {
-    document.querySelector('.navBar__section').style.transform = 'translate(0px)';
-    document.querySelector('.navBar__section').style.transition = '.4s';
-    document.querySelector('.blackBackground').style.display = 'block';
-  }
-
-  //Getting the right article with click - Slider and Latest
-  articleHandle = (article) => {
-    var name = article.currentTarget.textContent;
-    const chosenArticle = this.props.topArticles.filter((item) => {
-      return name.slice(name.search(item.title), name.indexOfEnd(item.title)) === item.title;
-    })
-    console.log(chosenArticle)
-  }
-
   render() {
+    console.log(store.getState().topArticles);
     return (
       <div className="App" id="home">
-        <div className="blackBackground" onClick={() =>this.buttonCloseNav()}></div>
+        
 
-        <Header 
-          buttonCloseNav={() => this.buttonCloseNav()}
-          buttonOpenNav={() => this.buttonOpenNav()}
-          mouseLeave={() => this.mouseLeave()}
-        />
-
-        <Slider 
-          articleHandle={(article) => {this.articleHandle(article)}}
+        <Slider
+          // onSliderItemClicked={(clickEvent) => {let name = clickEvent.currentTarget.textContent; this.articleHandle(name)}}
         />
 
         <Latest 
-          articleHandle={(article) => {this.articleHandle(article)}}
+          // articleHandle={(article) => {this.articleHandle(article)}}
         />
 
         <More 
-          categoryChange={(e)=>this.categoryChange(e)}
+          // categoryChange={(e)=>this.categoryChange(e)}
         />
       </div>
     );

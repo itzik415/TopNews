@@ -2,9 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+//Closing header navigation options when hover
+const mouseLeave = () => {
+    document.querySelector('.hidden__section').style.display = 'none';
+}
+
 const hidden = (props) => {
     return (
-        <div onMouseLeave={props.mouseLeave} className="hidden__section">
+        <div onMouseLeave={mouseLeave} className="hidden__section">
             <div className="hidden__section-holder">
                 {
                     props.trendingList.map((article, index) => {

@@ -5,12 +5,19 @@ import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { headerHover }  from '../../actions';
 
+//Button for closing navigation bar
+const buttonOpenNav = () => {
+    document.querySelector('.navBar__section').style.transform = 'translate(0px)';
+    document.querySelector('.navBar__section').style.transition = '.4s';
+    document.querySelector('.blackBackground').style.display = 'block';
+}
+
 const header = (props) => {
     return (
         <div className="header">
             <div className="header__section">
                 <div className="header__section-middle">
-                    <ion-icon onClick={props.buttonOpenNav} id="nav-icon" name="menu"></ion-icon>
+                    <ion-icon onClick={buttonOpenNav} id="nav-icon" name="menu"></ion-icon>
                     <p className="header__section-middle-logo"><Link to="/" id="header-logo">TopNews</Link></p>
                     <ul className="header__section-middle-list">
                         <li onMouseEnter={props.mouseEnter} className="header__section-middle-list-object"><Link id="header-link" to='/category/business'>Business</Link></li>
@@ -23,15 +30,12 @@ const header = (props) => {
                     <ion-icon id="search-icon" name="search"></ion-icon>
                 </div>
             </div>
-            <Hidden mouseLeave={props.mouseLeave} />
-            <NavBar buttonCloseNav={props.buttonCloseNav}/>
+            <Hidden />
+            <NavBar />
         </div>
     )
 }
 
-// const mapStateToProps = state => {
-
-// }
 
 const mapDispatchToProps = dispatch => {
     return {

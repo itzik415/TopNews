@@ -1,10 +1,7 @@
 import React from 'react';
-import moment from 'moment';
-import 'moment-timezone';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { movingArticlesRight, movingArticlesLeft } from '../../actions';
-
+import { movingSliderRight, movingSliderLeft} from '../../actions';
 
 const slider = (props) => {
     return (
@@ -14,20 +11,18 @@ const slider = (props) => {
             </div>
             <div className="slider__section-middle">
                 {
-                    props.topArticles.map((article, index) => {
+                    props.sliderItems.map((item, index) => {
                         return (
-                            index < 5?
-                            <Link id='link' to={`/article/${article.title}`} key={index}>
-                                <div className={`slider__section-middle-${index}`} onClick={props.articleHandle} key={index}>
-                                    <img className={`slider__section-middle-${index}-image`} src={`${article.urlToImage === null ? require('../../images/topNewsLogo.png') :article.urlToImage}`} alt='article'/>
-                                    <div className={`slider__section-middle-${index}-article`}>
-                                        <p className={`slider__section-middle-${index}-article-companyName`}><span id="redName">{article.source.name}</span> / {moment.tz(article.publishedAt,"UTC").fromNow()}</p>
-                                        <p className={`slider__section-middle-${index}-article-title`}>{article.title}</p>
-                                        <p className={`slider__section-middle-${index}-article-description`}>{article.description}</p>
+                            <Link id='link' to={item.url} key={index}>
+                                <div className={`slider__section-middle-${index}`} onClick={props.onSliderItemClicked} key={index}>
+                                    <img className={`slider__section-middle-${index}-image`} src={item.image} alt={item.title}/>
+                                    <div className={`slider__section-middle-${index}-item`}>
+                                        <p className={`slider__section-middle-${index}-item-companyName`}><span id="redName">{item.secondaryDescription}</span></p>
+                                        <p className={`slider__section-middle-${index}-item-title`}>{item.title}</p>
+                                        <p className={`slider__section-middle-${index}-item-description`}>{item.description}</p>
                                     </div>
                                 </div>
-                            </Link>:
-                            null
+                            </Link>
                         )
                     })
                 }
@@ -41,14 +36,17 @@ const slider = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        topArticles: state.topArticles
+        sliderItems: state.slider.sliderItems,
+        onSliderItemClicked: state.slider.onSliderItemClicked
+
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        moveSliderRight: () => dispatch(movingArticlesRight()),
-        moveSliderLeft: () => dispatch(movingArticlesLeft())
+        moveSliderRight: () => dispatch(movingSliderRight()),
+        moveSliderLeft: () => dispatch(movingSliderLeft()),
+        // onSliderItemClicked: (clickEvent) => dispatch(props.onSliderItemClicked(clickEvent))
     }
 }   
   

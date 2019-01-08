@@ -1,27 +1,27 @@
 import React from 'react';
 import moment from 'moment';
 import 'moment-timezone';
+import { connect } from 'react-redux';
 
 const articlePage = (props) => {
+    console.log(props.chosenArticle)
     return (
         <div className="article">
-             {
-                props.allArticles.map((article, index) => {
-                    return (
-                        <div className="news__section-container" key={index}>
-                            <img className="news__section-container-left" src={`${article.urlToImage}`} alt='article'/>
-                            <div className="news__section-container-right">
-                                <p className="news__section-container-right-name"><span id="redName">{article.source.name}</span> / {moment.tz(article.publishedAt,"UTC").fromNow()}</p>
-                                <p className="news__section-container-right-title">{article.title}</p>
-                                <p className="news__section-container-right-description">{article.description.slice(0,200)}</p>
-                            </div>
-                        </div>
-                    )
-                })
-             }
-             <p onClick={props.buttonClick} className="news__section-button">click for more</p>
+            <div className="article-containerLeft">
+                {/* <p className="article-containerLeft-title">{props.chosenArticle.title}</p>
+                <p className="article-containerLeft-name"><span id="redName">{props.chosenArticle.source.name}</span> / {moment.tz(props.chosenArticle.publishedAt,"UTC").fromNow()}</p>
+                <img className="article-containerLeft-image" src={`${props.chosenArticle.urlToImage}`} alt='article'/>
+                <p className="article-containerLeft-description">{props.chosenArticle.description}</p>
+                <p className="article-containerLeft-content">{props.chosenArticle.content}</p> */}
+            </div>
         </div>
     )
 }
 
-export default articlePage;
+const mapStateToProps = (state) => {
+    return {
+        chosenArticle: state.chosenArticle
+    }
+}
+
+export default connect(mapStateToProps)(articlePage);

@@ -1,12 +1,19 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const navBar = (props) => {
+//Button for opening navigation bar
+const buttonCloseNav = () => {
+    document.querySelector('.navBar__section').style.transform = 'translate(-350px)';
+    document.querySelector('.navBar__section').style.transition = '.4s';
+    document.querySelector('.blackBackground').style.display = 'none';
+}
+
+const navBar = () => {
     return (
         <div className="navBar__section">
             <div className="navBar__section-head">
-                <a href="home" className="navBar__section-head-logo">TopNews</a>
-                <ion-icon onClick={props.buttonCloseNav} id="closing-icon" name="close"></ion-icon>
+                <Link to='/' id='link'><p className="navBar__section-head-logo">TopNews</p></Link>
+                <ion-icon onClick={buttonCloseNav} id="closing-icon" name="close"></ion-icon>
             </div>
             <div className="navBar__section-content">
                 <ul className="navBar__section-content-list">
