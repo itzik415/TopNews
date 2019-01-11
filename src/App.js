@@ -3,7 +3,6 @@ import Slider from './components/slider/slider';
 import Latest from './components/latest/latest';
 import More from './components/more/more';
 import { connect } from 'react-redux';
-import { store } from './store';
 import {getTopHeadlines, 
         getTopSources,
         getBusinessArticles,
@@ -21,9 +20,6 @@ String.prototype.indexOfEnd = function(string) {
 }
 
 class App extends Component {
-  state = {
-    name: 'itzik'
-  }
   componentDidMount() {
   
     //Top Headlines from top sources
@@ -59,33 +55,22 @@ class App extends Component {
   }
 
   render() {
-    console.log(store.getState().topArticles);
     return (
       <div className="App" id="home">
-        
-
-        <Slider
-          // onSliderItemClicked={(clickEvent) => {let name = clickEvent.currentTarget.textContent; this.articleHandle(name)}}
-        />
-
-        <Latest 
-          // articleHandle={(article) => {this.articleHandle(article)}}
-        />
-
-        <More 
-          // categoryChange={(e)=>this.categoryChange(e)}
-        />
+        <Slider/>
+        <Latest/>
+        <More/>
       </div>
     );
   }
 }
 
 
-const mapStateToProps = (state) => {
-  return {
-    topArticles: state.topArticles,
-    allArticles: state.allArticles
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     topArticles: state.topArticles,
+//     allArticles: state.allArticles
+//   }
+// }
 
-export default connect(mapStateToProps)(App);
+export default connect(null)(App);

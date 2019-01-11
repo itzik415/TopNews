@@ -42,7 +42,7 @@ export function getEntertainmentArticles() {
     return function(dispatch) {
         fetch('https://newsapi.org/v2/everything?q=entertainment&language=en&apiKey=62abe08b0bac4d048638127c17e09e69')
             .then(response => response.json())
-            .then(myJson => dispatch({type: 'RECIVE_ENTERTAINMENT_ARTICLES', payload: myJson.articles.map(value => value)}))
+            .then(myJson => dispatch({type: 'RECIVE_ENTERTAINMENT_ARTICLES',payload: myJson.articles.map(value => value)}))
             .catch(err => dispatch({type: 'ERROR', payload: err}));
     }
 }
@@ -52,7 +52,7 @@ export function getHealthArticles() {
     return function(dispatch) {
         fetch('https://newsapi.org/v2/everything?q=health&language=en&apiKey=62abe08b0bac4d048638127c17e09e69')
             .then(response => response.json())
-            .then(myJson => dispatch({type: 'RECIVE_HEALTH_ARTICLES', payload: myJson.articles.map(value => value)}))
+            .then(myJson => dispatch({type: 'RECIVE_HEALTH_ARTICLES',payload: myJson.articles.map(value => value)}))
             .catch(err => dispatch({type: 'ERROR', payload: err}));
     }
 }
@@ -62,7 +62,7 @@ export function getScienceArticles() {
     return function(dispatch) {
         fetch('https://newsapi.org/v2/everything?q=science&language=en&apiKey=62abe08b0bac4d048638127c17e09e69')
             .then(response => response.json())
-            .then(myJson => dispatch({type: 'RECIVE_SCIENCE_ARTICLES', payload: myJson.articles.map(value => value)}))
+            .then(myJson => dispatch({type: 'RECIVE_SCIENCE_ARTICLES',payload: myJson.articles.map(value => value)}))
             .catch(err => dispatch({type: 'ERROR', payload: err}));
     }
 }
@@ -72,7 +72,7 @@ export function getSportsArticles() {
     return function(dispatch) {
         fetch('https://newsapi.org/v2/everything?q=sport&language=en&apiKey=62abe08b0bac4d048638127c17e09e69')
             .then(response => response.json())
-            .then(myJson => dispatch({type: 'RECIVE_SPORTS_ARTICLES', payload: myJson.articles.map(value => value)}))
+            .then(myJson => dispatch({type: 'RECIVE_SPORTS_ARTICLES',payload: myJson.articles.map(value => value)}))
             .catch(err => dispatch({type: 'ERROR', payload: err}));
     }
 }
@@ -82,7 +82,7 @@ export function getTechnologyArticles() {
     return function(dispatch) {
         fetch('https://newsapi.org/v2/everything?q=tech&language=en&apiKey=62abe08b0bac4d048638127c17e09e69')
             .then(response => response.json())
-            .then(myJson => dispatch({type: 'RECIVE_TECHNOLOGY_ARTICLES', payload: myJson.articles.map(value => value)}))
+            .then(myJson => dispatch({type: 'RECIVE_TECHNOLOGY_ARTICLES',payload: myJson.articles.map(value => value)}))
             .catch(err => dispatch({type: 'ERROR', payload: err}));
     }
 }
@@ -215,16 +215,45 @@ export function movingSliderLeft() {
 }
 
 //Getting the right article with click - Slider and Latest
-export function articleHandle(articleName) {
-    let chosenArticle = store.getState().topArticles.filter((item) => {
-        return articleName.slice(articleName.search(item.title), articleName.indexOfEnd(item.title)) === item.title;
+export function articleHandle(selectedArticleName, articles) {
+    let chosenArticleArray = articles.filter((item) => {
+        return selectedArticleName.slice(selectedArticleName.search(item.title), selectedArticleName.indexOfEnd(item.title)) === item.title;
     })
-    return function(dispatch) {
-        dispatch({type: 'RIGHT_ARTICLE', payload: initialState.chosenArticle = chosenArticle})
+    let chosenArticle = chosenArticleArray[0];
+    store.dispatch({type: 'RIGHT_ARTICLE', payload: initialState.chosenArticle = chosenArticle})
+}
+
+// //Get the right article from the API
+// export function getTheRightArticle(selectedArticleName, articles) {
+//     let chosenArticleArray = articles.filter((item) => {
+//         return selectedArticleName.slice(selectedArticleName.search(item.title), selectedArticleName.indexOfEnd(item.title)) === item.title;
+//     })
+//     let chosenArticle = chosenArticleArray[0].title.replace(/ /g,'%20');
+//     fetch(`https://newsapi.org/v2/top-headlines?q=${chosenArticle}&apiKey=62abe08b0bac4d048638127c17e09e69`)
+//         .then(response => response.json())
+//         .then(myJson => store.dispatch({type: 'RECIVE_RIGHT_ARTICLE', payload: myJson.articles[0]}))
+//         .catch(err => store.dispatch({type: 'ERROR', payload: err}))
+// }
+
+//Get the right article from the API
+export function getTheRightArticle(e) {
+    let pageUrl = window.location.href.slice(window.location.href.indexOf('article/')+8);
+    // let b = window.location.href;
+    // console.log(document.URL)
+    // console.log(b);
+    // console.log(pageUrl);
+    // console.log('in')
+    if(window.location.href.indexOf('article/') > -1) {
+        fetch(`https://newsapi.org/v2/top-headlines?q=${pageUrl}&apiKey=62abe08b0bac4d048638127c17e09e69`)
+        .then(response => response.json())
+        // .then(myJson => store.dispatch({type: 'RECIVE_RIGHT_ARTICLE', payload: myJson.articles[0]}))
+        .then(myJson => console.log(myJson.articles[0]))
+        // .catch(err => store.dispatch({type: 'ERROR', payload: err}))
     }
 }
 
-//For creating nwe sliderItems list
+
+//For creating new sliderItems list
 export function buildSliderItemsFromArticles(selectedArticles) {
     let sliderItems = [];
     for(let i = 0; i < selectedArticles.length; i++){
@@ -232,11 +261,55 @@ export function buildSliderItemsFromArticles(selectedArticles) {
             title: selectedArticles[i].title,
             image: selectedArticles[i].urlToImage, 
             description: selectedArticles[i].description,
-            secondaryDescription: selectedArticles[i].source.name + '/' + moment.tz(selectedArticles.publishedAt,"UTC").fromNow(),
+            secondaryDescription: selectedArticles[i].source.name + '/ ' + moment.tz(selectedArticles[i].publishedAt,"UTC").fromNow(),
             url: `/article/${selectedArticles[i].title}`,
         }
         sliderItems.push(item)
     }
     return sliderItems
 }
+
+//For creating new latest list
+export function buildLatestItemsFromArticles(selectedArticles) {
+    let latestItems = [];
+    for(let i = 0; i < selectedArticles.length; i++){
+        let item = {
+            title: selectedArticles[i].title,
+            image: selectedArticles[i].urlToImage, 
+            secondaryDescription: selectedArticles[i].source.name + '/ ' + moment.tz(selectedArticles[i].publishedAt,"UTC").fromNow(),
+            url: `/article/${selectedArticles[i].title}`,
+        }
+        latestItems.push(item)
+    }
+    return latestItems
+}
+
+//For creating new trending list
+export function buildTrendingItemsFromArticles(selectedArticles) {
+    let sliderItems = [];
+    for(let i = 0; i < selectedArticles.length; i++){
+        let item = {
+            title: selectedArticles[i].title,
+            image: selectedArticles[i].urlToImage, 
+            description: selectedArticles[i].description,
+            // content: selectedArticles[i].content,
+            secondaryDescription: selectedArticles[i].source.name + '/ ' + moment.tz(selectedArticles[i].publishedAt,"UTC").fromNow(),
+            url: `/article/${selectedArticles[i].title}`,
+        }
+        sliderItems.push(item)
+    }
+    return sliderItems
+}
+
+
+
+
+
+//Changing it to rusable url
+// function convertedUrlToRusableUrl() {
+//     sliderItem[i].replace(/[\/\\(),.-]/, ' ').replace(/\s+/, '-').replace(/(^-|-$)/, '')
+// }
+
+
+
 

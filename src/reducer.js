@@ -1,6 +1,6 @@
 // import { store } from './store';
 import { buildSliderItemsFromArticles } from './actions';
-import { articleHandle } from './actions';
+import { articleHandle, getTheRightArticle } from './actions';
 
 export const initialState = {
     counter: 0,
@@ -10,14 +10,17 @@ export const initialState = {
     science: [],
     sports: [],
     technology: [],
-    topArticles: [],
-    allArticles: [],
     trendingList: [],
+    topArticles: [],
+    topHeadlines: [],
+    allArticles: [],
+    trendingArticles: [],
     slider: {
         sliderItems: [],
-        itemIndex: 0
+        itemIndex: 0,
+        onSliderItemClicked: null
     },
-    chosenArticle: null,
+    chosenArticle: [],
     pageNumber: 2,
     translate: 0,
     error: null,
@@ -34,50 +37,76 @@ export const rootReducer = (state = initialState, action) => {
         case 'RECIVE_TOP_HEADLINES':
             return {
                 ...state, 
-                topArticles: action.payload,
+                topHeadlines: action.payload, 
+                topArticles: action.payload.slice(5,10),
+                trendingArticles: action.payload.slice(10,18),
                 slider: {
                     sliderItems: buildSliderItemsFromArticles(action.payload.slice(0,5)),
-                    onSliderItemClicked: (clickEvent) => articleHandle(clickEvent.currentTarget.textContent),
+                    onSliderItemClicked: (clickEvent) => getTheRightArticle(clickEvent),
+                    // onSliderItemClicked: (clickEvent) => articleHandle(clickEvent.currentTarget.textContent, action.payload),
                     itemIndex: 0
                 }
             }
-
 
         case 'RECIVE_BUSINESS_ARTICLES':
             return {
                 ...state, 
                 business: action.payload, 
-                trendingList: action.payload 
+                trendingList: [
+                    ...state.trendingList,
+                    {business: action.payload}
+                ],
+                
             }
 
         case 'RECIVE_ENTERTAINMENT_ARTICLES':
             return {
                 ...state, 
                 entertainment: action.payload,
+                trendingList: [
+                    ...state.trendingList,
+                    {entertainment: action.payload}
+                ]
             }
         
         case 'RECIVE_HEALTH_ARTICLES':
             return {
                 ...state, 
                 health: action.payload,
+                trendingList: [
+                    ...state.trendingList,
+                    {health: action.payload}
+                ]
             }
         
         case 'RECIVE_SCIENCE_ARTICLES':
             return {
                 ...state, 
                 science: action.payload,
+                trendingList: [
+                    ...state.trendingList,
+                    {science: action.payload}
+                ]
             }
 
         case 'RECIVE_SPORTS_ARTICLES':
             return {
                 ...state, 
                 sports: action.payload,
+                trendingList: [
+                    ...state.trendingList,
+                    {sports: action.payload}
+                ]
             }
 
         case 'RECIVE_TECHNOLOGY_ARTICLES':
             return {
                 ...state, 
                 technology: action.payload,
+                trendingList: [
+                    ...state.trendingList,
+                    {technology: action.payload}
+                ]
             }
 
         case 'RECIVE_MORE_ARTICLES':
@@ -99,11 +128,8 @@ export const rootReducer = (state = initialState, action) => {
                 trendingList: action.payload
             }
 
+
         case 'MOVING_SLIDER_RIGHT':
-            // let stateClone = JSON.parse()
-            // state.translate -= 1200;
-            // state.slider.itemIndex += 1;
-            // return state;
             return {
                 ...state, 
                 translate: state.translate - 1200,
@@ -146,9 +172,15 @@ export const rootReducer = (state = initialState, action) => {
         case 'RIGHT_ARTICLE':
             return {
                 ...state, 
-                chosenArticle: action.payload[0]
+                chosenArticle: action.payload
             }
-
+        
+        case 'RECIVE_RIGHT_ARTICLE':
+            return {
+                ...state,
+                chosenArticle: action.payload
+            }
+            
         case 'ERROR':
             return {
                 ...state, 

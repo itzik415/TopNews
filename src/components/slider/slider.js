@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { movingSliderRight, movingSliderLeft} from '../../actions';
 
 const slider = (props) => {
+    // console.log(props.trendingList)
     return (
         <div className="slider__section">
             <div className="slider__section-arrowDivLeft">
@@ -37,8 +38,8 @@ const slider = (props) => {
 const mapStateToProps = (state) => {
     return {
         sliderItems: state.slider.sliderItems,
-        onSliderItemClicked: state.slider.onSliderItemClicked
-
+        onSliderItemClicked: state.slider.onSliderItemClicked,
+        trendingList: state.trendingList,
     }
 }
 
@@ -46,7 +47,7 @@ const mapDispatchToProps = dispatch => {
     return {
         moveSliderRight: () => dispatch(movingSliderRight()),
         moveSliderLeft: () => dispatch(movingSliderLeft()),
-        // onSliderItemClicked: (clickEvent) => dispatch(props.onSliderItemClicked(clickEvent))
+        // onSliderItemClicked: (clickEvent) => dispatch(articleHandle(clickEvent))
     }
 }   
   

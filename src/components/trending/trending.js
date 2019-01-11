@@ -1,6 +1,4 @@
 import React from 'react';
-import moment from 'moment';
-import 'moment-timezone';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -10,19 +8,17 @@ const trending = (props) => {
             <p className="trending__section-line"></p>
             <p className="trending__section-title"><span className="trending__section-title-text">Trendings</span></p>
             {
-                props.topArticles.map((article, index) => {
+                props.trendingArticles.map((item, index) => {
                     return (
-                        index >= 8 && index < 16?
-                        <Link id='link' to={`/article/${article.title}`} key={index}>
-                            <div className="trending__section-container" key={index}>
-                                <img className="trending__section-container-left" src={`${article.urlToImage}`} alt='article'/>
+                        <Link id='link' to={item.url} key={index}>
+                            <div className="trending__section-container">
+                                <img className="trending__section-container-left" src={item.image} alt={item.title}/>
                                 <div className="trending__section-container-right">
-                                    <p className="trending__section-container-right-name"><span id="redName">{article.source.name}</span> / {moment.tz(article.publishedAt,"UTC").fromNow()}</p>
-                                    <p className="trending__section-container-right-title">{article.title}</p>
+                                    <p className="trending__section-container-right-name"><span id="redName">{item.secondaryDescription}</span></p>
+                                    <p className="trending__section-container-right-title">{item.title}</p>
                                 </div>
                             </div>
-                        </Link>:
-                        null
+                        </Link>
                     )
                 })
             }
@@ -32,7 +28,7 @@ const trending = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-      topArticles: state.topArticles
+        trendingArticles: state.trendingArticles
     }
   }
   

@@ -7,7 +7,17 @@ const mouseLeave = () => {
     document.querySelector('.hidden__section').style.display = 'none';
 }
 
+// trendingList: [
+//     {business: [1,2,3]},
+//     {science: [1,2,3]},
+//     {technology: [1,2,3]},
+//     {health: [1,2,3]},
+// ]
+
 const hidden = (props) => {
+    if(props.trendingList[0] !== undefined) {
+        console.log(props.trendingList[0].business)
+    }
     return (
         <div onMouseLeave={mouseLeave} className="hidden__section">
             <div className="hidden__section-holder">
@@ -32,7 +42,7 @@ const hidden = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        trendingList: state.trendingList
+        trendingList: state.trendingList,
     }
 }
   
