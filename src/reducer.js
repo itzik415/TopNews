@@ -52,10 +52,10 @@ export const rootReducer = (state = initialState, action) => {
             return {
                 ...state, 
                 business: action.payload, 
-                trendingList: [
+                trendingList: {
                     ...state.trendingList,
-                    {business: action.payload}
-                ],
+                    business: action.payload
+                },
                 
             }
 
@@ -63,50 +63,50 @@ export const rootReducer = (state = initialState, action) => {
             return {
                 ...state, 
                 entertainment: action.payload,
-                trendingList: [
+                trendingList: {
                     ...state.trendingList,
-                    {entertainment: action.payload}
-                ]
+                    entertainment: action.payload
+                }
             }
         
         case 'RECIVE_HEALTH_ARTICLES':
             return {
                 ...state, 
                 health: action.payload,
-                trendingList: [
+                trendingList: {
                     ...state.trendingList,
-                    {health: action.payload}
-                ]
+                    health: action.payload
+                }
             }
         
         case 'RECIVE_SCIENCE_ARTICLES':
             return {
                 ...state, 
                 science: action.payload,
-                trendingList: [
+                trendingList: {
                     ...state.trendingList,
-                    {science: action.payload}
-                ]
+                    science: action.payload
+                }
             }
 
         case 'RECIVE_SPORTS_ARTICLES':
             return {
                 ...state, 
                 sports: action.payload,
-                trendingList: [
+                trendingList: {
                     ...state.trendingList,
-                    {sports: action.payload}
-                ]
+                    sports: action.payload
+                }
             }
 
         case 'RECIVE_TECHNOLOGY_ARTICLES':
             return {
                 ...state, 
                 technology: action.payload,
-                trendingList: [
+                trendingList: {
                     ...state.trendingList,
-                    {technology: action.payload}
-                ]
+                    technology: action.payload
+                }
             }
 
         case 'RECIVE_MORE_ARTICLES':
@@ -179,6 +179,15 @@ export const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 chosenArticle: action.payload
+            }
+
+        case 'INDEX_BACK_TO_ZERO':
+            return {
+                ...state,
+                slider: {
+                    ...state.slider,
+                    itemIndex: 0
+                }
             }
             
         case 'ERROR':

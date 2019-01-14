@@ -3,6 +3,7 @@ import Slider from './components/slider/slider';
 import Latest from './components/latest/latest';
 import More from './components/more/more';
 import { connect } from 'react-redux';
+import {store} from './store';
 import {getTopHeadlines, 
         getTopSources,
         getBusinessArticles,
@@ -21,7 +22,8 @@ String.prototype.indexOfEnd = function(string) {
 
 class App extends Component {
   componentDidMount() {
-  
+    console.log(store.getState());
+    
     //Top Headlines from top sources
     this.props.dispatch(getTopHeadlines())
     

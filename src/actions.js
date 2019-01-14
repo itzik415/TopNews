@@ -236,19 +236,16 @@ export function articleHandle(selectedArticleName, articles) {
 // }
 
 //Get the right article from the API
-export function getTheRightArticle(e) {
-    let pageUrl = window.location.href.slice(window.location.href.indexOf('article/')+8);
-    // let b = window.location.href;
-    // console.log(document.URL)
-    // console.log(b);
-    // console.log(pageUrl);
-    // console.log('in')
+export function getTheRightArticle() {
+    let urlLocation = window.location.href;
+    let pageUrl = urlLocation.slice(urlLocation.indexOf('article/')+8);
     if(window.location.href.indexOf('article/') > -1) {
         fetch(`https://newsapi.org/v2/top-headlines?q=${pageUrl}&apiKey=62abe08b0bac4d048638127c17e09e69`)
         .then(response => response.json())
-        // .then(myJson => store.dispatch({type: 'RECIVE_RIGHT_ARTICLE', payload: myJson.articles[0]}))
-        .then(myJson => console.log(myJson.articles[0]))
-        // .catch(err => store.dispatch({type: 'ERROR', payload: err}))
+        .then(myJson => store.dispatch({type: 'RECIVE_RIGHT_ARTICLE', payload: myJson.articles[0]}))
+        .catch(err => store.dispatch({type: 'ERROR', payload: err}))
+    }else {
+        console.log('didnt find')
     }
 }
 
@@ -299,6 +296,11 @@ export function buildTrendingItemsFromArticles(selectedArticles) {
         sliderItems.push(item)
     }
     return sliderItems
+}
+
+//IndexItem for slider back to zero
+export function itemIndexForSliderBackToZero () {
+    store.dispatch({type: 'INDEX_BACK_TO_ZERO'})
 }
 
 

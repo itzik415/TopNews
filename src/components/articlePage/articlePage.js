@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Trending from '../trending/trending';
+import {getTheRightArticle} from '../../actions';
 
-//רק כשניא פונה לכתבה להביא אותה ישירות מהapi ולא מהstate
 const articlePage = (props) => {
+    getTheRightArticle();
+
     return (
         <div className="article">
             <div className="article-containerLeft">

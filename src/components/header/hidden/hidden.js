@@ -7,22 +7,16 @@ const mouseLeave = () => {
     document.querySelector('.hidden__section').style.display = 'none';
 }
 
-// trendingList: [
-//     {business: [1,2,3]},
-//     {science: [1,2,3]},
-//     {technology: [1,2,3]},
-//     {health: [1,2,3]},
-// ]
-
 const hidden = (props) => {
-    if(props.trendingList[0] !== undefined) {
-        console.log(props.trendingList[0].business)
+    if(props.trendingList !== undefined) {
+        console.log(props.trendingList)
     }
+    // let category;
     return (
         <div onMouseLeave={mouseLeave} className="hidden__section">
             <div className="hidden__section-holder">
-                {
-                    props.trendingList.map((article, index) => {
+                {/* {
+                    props.trendingList.category.map((article, index) => {
                         return (
                             index < 6?
                             <Link id="link" to={`/article/${article.title}`} key={index}>
@@ -34,7 +28,7 @@ const hidden = (props) => {
                             null
                         )
                     })
-                }
+                } */}
             </div>
         </div>
     )
