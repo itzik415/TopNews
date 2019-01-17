@@ -239,16 +239,26 @@ export function articleHandle(selectedArticleName, articles) {
 export function getTheRightArticle() {
     let urlLocation = window.location.href;
     let pageUrl = urlLocation.slice(urlLocation.indexOf('article/')+8);
+    // .replace(/[\/\\(),.-]/, ' ').replace(/\s+/, '-').replace(/(^-|-$)/, '')
     if(window.location.href.indexOf('article/') > -1) {
         fetch(`https://newsapi.org/v2/top-headlines?q=${pageUrl}&apiKey=62abe08b0bac4d048638127c17e09e69`)
-        .then(response => response.json())
-        .then(myJson => store.dispatch({type: 'RECIVE_RIGHT_ARTICLE', payload: myJson.articles[0]}))
-        .catch(err => store.dispatch({type: 'ERROR', payload: err}))
+            .then(response => response.json())
+            .then(myJson => store.dispatch({type: 'RECIVE_RIGHT_ARTICLE', payload: myJson.articles[0]}))
+            .catch(err => store.dispatch({type: 'ERROR', payload: err}))
     }else {
         console.log('didnt find')
     }
 }
 
+//Get trending directly form the API
+export function getTrendingArticles() {
+    return function(dispatch) {
+        fetch('https://newsapi.org/v2/top-headlines?sources=the-washington-post,the-new-york-times,fox-news,nbc-news,cnn-es&apiKey=62abe08b0bac4d048638127c17e09e69')
+            .then(response => response.json())
+            .then(myJson => dispatch({type: 'RECIVE_TRENDING', payload: myJson.articles.map(value => value)}))
+            .catch(err => dispatch({type: 'ERROR', payload: err}));
+    }
+}
 
 //For creating new sliderItems list
 export function buildSliderItemsFromArticles(selectedArticles) {
@@ -266,6 +276,21 @@ export function buildSliderItemsFromArticles(selectedArticles) {
     return sliderItems
 }
 
+//For creating new trending list
+export function buildTrendingItemsFromArticles(selectedArticles) {
+    let trendingItems = [];
+    for(let i = 0; i < selectedArticles.length; i++){
+        let item = {
+            title: selectedArticles[i].title,
+            image: selectedArticles[i].urlToImage, 
+            secondaryDescription: selectedArticles[i].source.name + '/ ' + moment.tz(selectedArticles[i].publishedAt,"UTC").fromNow(),
+            url: `/article/${selectedArticles[i].title}`,
+        }
+        trendingItems.push(item)
+    }
+    return trendingItems
+}
+
 //For creating new latest list
 export function buildLatestItemsFromArticles(selectedArticles) {
     let latestItems = [];
@@ -281,29 +306,10 @@ export function buildLatestItemsFromArticles(selectedArticles) {
     return latestItems
 }
 
-//For creating new trending list
-export function buildTrendingItemsFromArticles(selectedArticles) {
-    let sliderItems = [];
-    for(let i = 0; i < selectedArticles.length; i++){
-        let item = {
-            title: selectedArticles[i].title,
-            image: selectedArticles[i].urlToImage, 
-            description: selectedArticles[i].description,
-            // content: selectedArticles[i].content,
-            secondaryDescription: selectedArticles[i].source.name + '/ ' + moment.tz(selectedArticles[i].publishedAt,"UTC").fromNow(),
-            url: `/article/${selectedArticles[i].title}`,
-        }
-        sliderItems.push(item)
-    }
-    return sliderItems
-}
-
 //IndexItem for slider back to zero
 export function itemIndexForSliderBackToZero () {
     store.dispatch({type: 'INDEX_BACK_TO_ZERO'})
 }
-
-
 
 
 

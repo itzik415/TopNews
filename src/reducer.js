@@ -1,6 +1,8 @@
 // import { store } from './store';
-import { buildSliderItemsFromArticles } from './actions';
-import { articleHandle, getTheRightArticle } from './actions';
+import { buildSliderItemsFromArticles, 
+         getTheRightArticle, 
+         buildTrendingItemsFromArticles, 
+         buildLatestItemsFromArticles } from './actions';
 
 export const initialState = {
     counter: 0,
@@ -38,8 +40,8 @@ export const rootReducer = (state = initialState, action) => {
             return {
                 ...state, 
                 topHeadlines: action.payload, 
-                topArticles: action.payload.slice(5,10),
-                trendingArticles: action.payload.slice(10,18),
+                topArticles: buildLatestItemsFromArticles(action.payload.slice(5,10)),
+                trendingArticles: buildTrendingItemsFromArticles(action.payload.slice(10,18)),
                 slider: {
                     sliderItems: buildSliderItemsFromArticles(action.payload.slice(0,5)),
                     onSliderItemClicked: (clickEvent) => getTheRightArticle(clickEvent),
@@ -190,6 +192,12 @@ export const rootReducer = (state = initialState, action) => {
                 }
             }
             
+        case 'RECIVE_TRENDING':
+            return {
+                ...state,
+                trendingArticles: buildTrendingItemsFromArticles(action.payload.slice(10,18))
+            }
+
         case 'ERROR':
             return {
                 ...state, 

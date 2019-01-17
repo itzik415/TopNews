@@ -28,7 +28,7 @@ const trending = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        trendingArticles: state.trendingArticles
+        trendingArticles: state.trendingArticles,
     }
   }
   
